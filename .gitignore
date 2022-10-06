@@ -131,3 +131,10 @@ dmypy.json
 .idea
 
 /output/*
+
+# Mac OS files
+**/.DS_Store
+
+# Ignore dockstore workflow logs
+/tools/wdl/cromwell-executions
+/tools/wdl/cromwell-workflow-logs
