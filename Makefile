@@ -16,3 +16,4 @@ docker-publish:
 
 
 #dockstore workflow launch --local-entry tools/wdl/drs_compliance_suite.wdl --json tools/wdl/drs_compliance_suite.wdl.json
+
