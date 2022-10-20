@@ -8,8 +8,7 @@ task createDrsComplianceReport{
     }
 
     command {
-        python3 compliance_suite/report_runner.py --server_base_url ${server}
-        --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "no_auth"
+        drs-compliance --server_base_url ${server} --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "none"
     }
 
     output {

@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # copy all the files to the container
 COPY . .
 
+# install drs-compliance
+RUN python setup.py install
+
 # set python path to current dir
 ENV PYTHONPATH /usr/src/app
 
