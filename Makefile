@@ -14,6 +14,3 @@ docker-build:
 docker-publish:
 	docker image push ${DOCKER_IMG}
 
-
-#dockstore workflow launch --local-entry tools/wdl/drs_compliance_suite.wdl --json tools/wdl/drs_compliance_suite.wdl.json
-

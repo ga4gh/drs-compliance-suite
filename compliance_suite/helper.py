@@ -135,5 +135,10 @@ class Parser:
                             type=str,
                             choices=["none", "basic", "bearer", "passport"],
                             default="none")
+        parser.add_argument("--report_path",
+                            required=False,
+                            help="path of the output file",
+                            type=str,
+                            default="./output/drs_compliance_report.json")
         args = parser.parse_args()
         return (args)

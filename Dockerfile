@@ -16,6 +16,6 @@ ENV PYTHONPATH /usr/src/app
 RUN pip3 install -r requirements.txt
 
 # run the command
-ENTRYPOINT ["python3", "compliance_suite/report_runner.py"]
+ENTRYPOINT ["drs-compliance"]
 
-#docker run ga4gh/drs-compliance-suite:test --server_base_url "http://host.docker.internal:8089/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type no_auth
+# docker run ga4gh/drs-compliance-suite:test --server_base_url "http://host.docker.internal:8089/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "none" --report_path "-"
