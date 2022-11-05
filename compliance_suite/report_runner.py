@@ -299,18 +299,13 @@ def main():
                                 platform_description = args.platform_description,
                                 auth_type = args.auth_type)
 
-    # output_report_file_path = "./output/report_"+datetime.strftime(datetime.utcnow(), "%Y-%m-%d_%H-%M-%S")+".json"
-    if args.report_path == "-":
-        print(report_json)
-        return report_json # is this still needed?
-    else:
-        output_report_file_path = args.report_path
-        if not os.path.exists("./output"):
-            os.makedirs("./output")
+    output_report_file_path = args.report_path
+    if not os.path.exists("./output"):
+        os.makedirs("./output")
 
-        # write output report to file
-        with open(output_report_file_path, 'w', encoding='utf-8') as f:
-            json.dump(report_json, f, ensure_ascii=False, indent=4)
-
+    # write output report to file
+    with open(output_report_file_path, 'w', encoding='utf-8') as f:
+        json.dump(report_json, f, ensure_ascii=False, indent=4)
+        
 if __name__=="__main__":
     main()

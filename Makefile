@@ -19,7 +19,7 @@ run-docker:
 	docker run -v $(PWD)/output/:/usr/src/app/output/ ga4gh/drs-compliance-suite:test \
 	--server_base_url "http://host.docker.internal:8089/ga4gh/drs/v1" \
 	--platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" \
-	--auth_type "none" --report_path "./output/my-test-json.json"
+	--auth_type "none" --report_path "./output/test-report.json"
 
 .PHONY: run-dockstore
 run-dockstore:

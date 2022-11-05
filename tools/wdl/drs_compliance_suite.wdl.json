@@ -1,4 +1,4 @@
 {
     "drsComplianceReportWorkflow.server":"http://host.docker.internal:8089/ga4gh/drs/v1",
-    "drsComplianceReportWorkflow.json_path":"./output/my-test-report.json"
+    "drsComplianceReportWorkflow.json_path":"test-report.json"
 }
