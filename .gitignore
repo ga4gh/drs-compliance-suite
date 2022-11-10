@@ -138,3 +138,7 @@ dmypy.json
 # Ignore dockstore workflow logs
 /tools/wdl/cromwell-executions
 /tools/wdl/cromwell-workflow-logs
+
+# Dockstore workflow results
+**/*.stderr.txt
+**/*.stdout.txt

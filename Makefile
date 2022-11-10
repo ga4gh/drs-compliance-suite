@@ -21,7 +21,11 @@ run-docker:
 	--platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" \
 	--auth_type "none" --report_path "./output/test-report.json"
 
-.PHONY: run-dockstore
-run-dockstore:
+.PHONY: run-dockstore-wdl
+run-dockstore-wdl:
 	dockstore workflow launch --local-entry tools/wdl/drs_compliance_suite.wdl --json tools/wdl/drs_compliance_suite.wdl.json
+
+.PHONY: run-dockstore-cwl
+run-dockstore-cwl:
+	dockstore workflow launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
 
