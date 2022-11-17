@@ -25,7 +25,10 @@ run-docker:
 run-dockstore-wdl:
 	dockstore workflow launch --local-entry tools/wdl/drs_compliance_suite.wdl --json tools/wdl/drs_compliance_suite.wdl.json
 
+# --script to override conflicting module versions between host computer and dockstore
 .PHONY: run-dockstore-cwl
 run-dockstore-cwl:
-	dockstore workflow launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
+	cwltool tools/cwl/drs_compliance_suite.cwl tools/cwl/drs_compliance_suite.cwl.json
+
+# dockstore workflow launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
 

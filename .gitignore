@@ -142,3 +142,4 @@ dmypy.json
 # Dockstore workflow results
 **/*.stderr.txt
 **/*.stdout.txt
+test-drs-compliance-report.json
