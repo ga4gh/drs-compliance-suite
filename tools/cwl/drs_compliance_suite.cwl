@@ -6,7 +6,6 @@ baseCommand:
 hints:
     DockerRequirement:
         dockerPull: ga4gh/drs-compliance-suite:test
-
 inputs:
     server_base_url:
         type: string
@@ -33,7 +32,6 @@ inputs:
         inputBinding:
             position: 5
             prefix: --report_path
-  
 outputs:
   drs-compliance-report:   
     type: File
