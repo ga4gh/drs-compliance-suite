@@ -33,7 +33,7 @@ inputs:
       position: 5
       prefix: --report_path
 outputs: 
-    drs-compliance-report:   
-      type: File
-      outputBinding:
-        glob: $(inputs.report_path)
+  drs-compliance-report:   
+    type: File
+    outputBinding:
+      glob: $(inputs.report_path)

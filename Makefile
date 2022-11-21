@@ -27,10 +27,10 @@ run-dockstore-wdl:
 
 .PHONY: run-cwltool-cwl
 run-cwltool-cwl:
-	cwltool tools/cwl/drs_compliance_suite.cwl tools/cwl/drs_compliance_suite.cwl.json
+	cwltool --outdir output tools/cwl/drs_compliance_suite.cwl tools/cwl/drs_compliance_suite.cwl.json
 
 # --script to override conflicting module versions between host computer and dockstore
 .PHONY: run-dockstore-cwl
 run-dockstore-cwl:
-	dockstore workflow launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
+	dockstore tool launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
 
