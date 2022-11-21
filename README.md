@@ -59,28 +59,28 @@ pytest --cov=compliance_suite unittests/
 ```
 cwltool --outdir output tools/cwl/drs_compliance_suite.cwl tools/cwl/drs_compliance_suite.cwl.json
 ```
-Note: `/output/` is where the report will be saved, can be customized.
+Note: `output` is the subdirectory where the report will be saved, can be customized.
 ###### `dockstore`
 ```
 dockstore tool launch --local-entry tools/cwl/drs_compliance_suite.cwl --json tools/cwl/drs_compliance_suite.cwl.json --script
 ```
 Notes:
-* Saves the output file in the outermost directory (`/drs-compliance-suite/`)
-* `--script` is used to override `dockstore` demandind that every python package must match versions
+* Saves the output file in the outermost directory (`/drs-compliance-suite/`).
+* `--script` is used to override `dockstore`'s requirement that every python package must match versions.
 
 #### WDL
 ```
 dockstore workflow launch --local-entry tools/wdl/drs_compliance_suite.wdl --json tools/wdl/drs_compliance_suite.wdl.json
 ```
 Notes:
-* Saves the output file in the folder created to run the workflow. Can `cd` into the folder to retrieve the report
+* Saves the output file in the folder created to run the workflow. Can `cd` into the folder to retrieve the report.
 * Find this printed line once the workflow is complete (`...` are randomly generated IDs):
 ```
 [YYYY-MM-DD HH:MM:SS,MS] [info] SingleWorkflowRunnerActor workflow finished with status 'Succeeded'.
-	{
-	  "outputs": {
-	    "drsComplianceReportWorkflow.createDrsComplianceReport.drs_compliance_report": "/private/var/folders/.../cromwell-executions/drsComplianceReportWorkflow/.../call-createDrsComplianceReport/execution/wdl-test-drs-compliance-report.json"
-	  },
-	  "id": "..."
-	}
+{
+  "outputs": {
+    "drsComplianceReportWorkflow.createDrsComplianceReport.drs_compliance_report": "/private/var/folders/.../cromwell-executions/drsComplianceReportWorkflow/.../call-createDrsComplianceReport/execution/wdl-test-drs-compliance-report.json"
+  },
+  "id": "..."
+}
 ```
