@@ -145,4 +145,3 @@ datastore/*
 **/*.stderr.txt
 **/*.stdout.txt
 cwl-test-drs-compliance-report.json
-datastore/*
