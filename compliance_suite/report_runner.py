@@ -293,6 +293,7 @@ def get_drs_object_test (
 
 def main():
     args = Parser.parse_args()
+    output_report_file_path = "./output/report_"+datetime.strftime(datetime.utcnow(), "%Y-%m-%d_%H-%M-%S")+".json"
 
     output_report = report_runner(server_base_url = args.server_base_url,
                                 platform_name = args.platform_name,
