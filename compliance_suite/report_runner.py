@@ -294,18 +294,19 @@ def get_drs_object_test (
 def main():
     args = Parser.parse_args()
 
-    report_json = report_runner(server_base_url = args.server_base_url,
+    output_report = report_runner(server_base_url = args.server_base_url,
                                 platform_name = args.platform_name,
                                 platform_description = args.platform_description,
                                 auth_type = args.auth_type)
 
-    output_report_file_path = args.report_path
+    output_report_json = json.loads(output_report)
+    
     if not os.path.exists("./output"):
         os.makedirs("./output")
 
     # write output report to file
     with open(output_report_file_path, 'w', encoding='utf-8') as f:
-        json.dump(report_json, f, ensure_ascii=False, indent=4)
+        json.dump(output_report_json, f, ensure_ascii=False, indent=4)
         
 if __name__=="__main__":
     main()

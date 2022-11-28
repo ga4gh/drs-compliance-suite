@@ -130,7 +130,9 @@ dmypy.json
 
 .idea
 
-/output/*
+output/*
+null/*
+datastore/*
 
 # Mac OS files
 **/.DS_Store
