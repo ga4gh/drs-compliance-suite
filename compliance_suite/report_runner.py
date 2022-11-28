@@ -300,13 +300,13 @@ def main():
                                 auth_type = args.auth_type)
 
     output_report_json = json.loads(output_report)
-    
+
     if not os.path.exists("./output"):
         os.makedirs("./output")
 
     # write output report to file
     with open(output_report_file_path, 'w', encoding='utf-8') as f:
         json.dump(output_report_json, f, ensure_ascii=False, indent=4)
-        
+   
 if __name__=="__main__":
     main()
