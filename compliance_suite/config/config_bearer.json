@@ -1,14 +1,3 @@
 {
-  "auth_type": "bearer",
-  "bearer_token": "secret-bearer-token-1",
-  "drs_objects": [
-    {
-      "id": "697907bf-d5bd-433e-aac2-1747f1faf366",
-      "is_present_in_drs_server": true
-    },
-    {
-      "id": "697907bf-d5bd-433e-aac2-1747f1faf377",
-      "is_present_in_drs_server": false
-    }
-  ]
+  "bearer_token": "secret-bearer-token-1"
 }

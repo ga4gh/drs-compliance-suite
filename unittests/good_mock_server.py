@@ -1,7 +1,6 @@
 from flask import Flask, request, Response
 import datetime
-from edit_data import write_drs_object, get_all_drs_objects, get_drs_object, get_drs_access_url, get_drs_object_passport
-from collections.abc import Mapping
+from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 from helper import parse_args
@@ -75,7 +74,7 @@ def get_service_info():
         "type": {
             "group": "org.ga4gh",
             "artifact": "drs",
-            "version": "1.1.0"
+            "version": "1.2.0"
         },
         "organization": {
             "name": "Global Alliance for Genomics and Health",
@@ -181,35 +180,88 @@ def get_object(obj_id):
 
 # Get a URL for fetching bytes or
 # Get a URL for fetching bytes through POST'ing Passport
-@app.route('/ga4gh/drs/v1/objects/<obj_id>/access/<access_url>', methods=['GET'])
+@app.route('/ga4gh/drs/v1/objects/<obj_id>/access/<access_id>', methods=['GET', 'POST'])
 @conditional_auth(app.config["auth_type"])
-def get_access_url(obj_id, access_url):
-    ## TODO: Add auth support
-    header_content = request.headers
+def get_access_url(obj_id, access_id):
     accept_type = "application/json"
+    access_url_obj = get_drs_access_url(obj_id, access_id)
 
-    # validate the accept header
-    if "accept" in header_content and header_content["accept"] not in [accept_type, "*/*"]:
-        return Response(status=406)
+    if request.method == "GET" and app.config["auth_type"]!="passport":
+        if access_url_obj:
+            # Object found
+            return Response(response=json.dumps(access_url_obj), status=200, mimetype=accept_type)
+        else:
+            # Object not found
+            error_obj = {
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "status_code": 404,
+                "error": "Not Found",
+                "msg": "The requested access url wasn't found"
+            }
 
-    access_url = get_drs_access_url(obj_id, access_url)
+            return Response(response=json.dumps(error_obj), status=404, mimetype=accept_type)
+    elif request.method == "POST" and app.config["auth_type"]=="passport":
+        header_content = request.headers
+        accept_type = "application/json"
 
-    time_stamp = datetime.datetime.utcnow().isoformat()
-    final_time_stamp = time_stamp[:time_stamp.find(".")] + "Z"
+        if not access_url_obj: # Object not found
+            error_obj = {
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "status_code": 404,
+                "error": "Not Found",
+                "msg": "No access url found for drs id: " + obj_id + " and access_id: " + access_id
+            }
+            return Response(response=json.dumps(error_obj), status=404, mimetype=accept_type)
 
-    if not access_url:
-        # Object not found
-        error_obj = {
-            "timestamp": final_time_stamp,
-            "status_code": 404,
-            "error": "Not Found",
-            "msg": "invalid access_id/object_id"
-        }
-
-        return Response(response=json.dumps(error_obj), status=404, mimetype=accept_type)
+        if app.config["auth_type"]=="passport" and ("accept" in header_content and header_content["accept"] in [accept_type, "*/*"]):
+            try:
+                request_body = request.get_json()
+                drs_obj_passport = get_drs_object_passport(obj_id)
+                if not request_body["passports"]:
+                    error_obj = {
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "status_code": 401,
+                        "error": "Request is unauthorized",
+                        "msg": "A passport is required to authorize the request"
+                    }
+                    return Response(response=json.dumps(error_obj), status=401, mimetype=accept_type)
+                elif drs_obj_passport in request_body["passports"]:
+                    return Response(response=json.dumps(access_url_obj), status=200, mimetype=accept_type)
+                else:
+                    error_obj = {
+                        "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "status_code": 403,
+                        "error": "The requestor is not authorized to perform this action",
+                        "msg": "The passport provided does not grant access to the requested resource"
+                    }
+                    return Response(response=json.dumps(error_obj), status=403, mimetype=accept_type)
+            except Exception as ex:
+                error_obj = {
+                    "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "status_code": 500,
+                    "error": "An unexpected error occured",
+                    "msg": "An unexpected error occured. Exception: " + str(ex) +
+                           ". POST method can be used only if the app is running with auth_type as 'passport'. "
+                           "Content-Type must be 'application/json"
+                }
+            return Response(response=json.dumps(error_obj), status=500, mimetype=accept_type)
+        else:
+            error_obj = {
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "status_code": 500,
+                "error": "An unexpected error occured",
+                "msg": "An unexpected error occured. POST method can be used only if the app is running with auth_type as 'passport'. "
+                       "Content-Type must be 'application/json'"
+            }
+            return Response(response=json.dumps(error_obj), status=500, mimetype=accept_type)
     else:
-        # Object found
-        return Response(response=json.dumps(access_url), status=200, mimetype=accept_type)
+        error_obj = {
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "status_code": 400,
+            "error": "The request is malformed",
+            "msg": "HTTP Method Not Allowed"
+        }
+        return Response(response=json.dumps(error_obj), status=400, mimetype=accept_type)
 
 if __name__=="__main__":
     app.run(host=args.app_host,port=args.app_port)
