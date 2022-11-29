@@ -1,1 +1,0 @@
-{"auth_type":"none","server_base_url":"http://host.docker.internal:8089/ga4gh/drs/v1","platform_name":"ga4gh starter kit drs","report_path":"test-drs-compliance-report.json","platform_description":"GA4GH reference implementation of DRS specification"}

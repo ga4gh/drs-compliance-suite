@@ -290,7 +290,6 @@ def add_case_response_schema(test_object,schema_name, case_name, case_descriptio
 
 def main():
     args = Parser.parse_args()
-    output_report_file_path = "./output/report_"+datetime.strftime(datetime.utcnow(), "%Y-%m-%d_%H-%M-%S")+".json"
 
     output_report = report_runner(server_base_url = args.server_base_url,
                                 platform_name = args.platform_name,
@@ -303,7 +302,7 @@ def main():
         os.makedirs("./output")
 
     # write output report to file
-    with open(output_report_file_path, 'w', encoding='utf-8') as f:
+    with open(args.report_path, 'w', encoding='utf-8') as f:
         json.dump(output_report_json, f, ensure_ascii=False, indent=4)
 
 if __name__=="__main__":
