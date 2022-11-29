@@ -3,16 +3,18 @@ version 1.0
 task createDrsComplianceReport{
     
     input {
-        String server
-        String json_path
+        String server_base_url
+        String platform_name
+        String platform_description
+        String report_path
     }
 
     command {
-        drs-compliance --server_base_url ${server} --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "none" --report_path "${json_path}"
+        drs-compliance --server_base_url ${server_base_url} --platform_name "${platform_name}" --platform_description "${platform_description}" --auth_type "none" --report_path "${report_path}"
     }
 
     output {
-        File drs_compliance_report = "${json_path}"
+        File drs_compliance_report = "${report_path}"
     }
 
     runtime {
@@ -24,10 +26,13 @@ task createDrsComplianceReport{
 workflow drsComplianceReportWorkflow {
 
     input {
-        String server
-        String json_path
+        String server_base_url
+        String platform_name
+        String platform_description
+        String report_path
     }
 
-    call createDrsComplianceReport { input: server=server, json_path=json_path }
-
+    call createDrsComplianceReport { 
+        input: server_base_url=server_base_url, platform_name=platform_name, platform_description=platform_description, report_path=report_path
+    }
 }
