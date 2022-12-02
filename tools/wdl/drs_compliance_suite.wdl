@@ -6,11 +6,12 @@ task createDrsComplianceReport{
         String server_base_url
         String platform_name
         String platform_description
+        String auth_type
         String report_path
     }
 
     command {
-        drs-compliance --server_base_url ${server_base_url} --platform_name "${platform_name}" --platform_description "${platform_description}" --auth_type "none" --report_path "${report_path}"
+        drs-compliance --server_base_url ${server_base_url} --platform_name "${platform_name}" --platform_description "${platform_description}" --auth_type "${auth_type}" --report_path "${report_path}"
     }
 
     output {
@@ -29,10 +30,11 @@ workflow drsComplianceReportWorkflow {
         String server_base_url
         String platform_name
         String platform_description
+        String auth_type
         String report_path
     }
 
     call createDrsComplianceReport { 
-        input: server_base_url=server_base_url, platform_name=platform_name, platform_description=platform_description, report_path=report_path
+        input: server_base_url=server_base_url, platform_name=platform_name, platform_description=platform_description, auth_type=auth_type, report_path=report_path
     }
 }
