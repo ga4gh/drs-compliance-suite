@@ -21,7 +21,6 @@ task createDrsComplianceReport{
     runtime {
         docker: "ga4gh/drs-compliance-suite:test"
     }
-
 }
 
 workflow drsComplianceReportWorkflow {
