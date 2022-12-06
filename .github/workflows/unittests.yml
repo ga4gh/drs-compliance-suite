@@ -14,8 +14,9 @@ jobs:
     - run: pip install -r requirements.txt # download pip dependencies
 
     - name: Get and Set Version
-      run: echo grep 'version=' setup.py | awk -F '"' '{print $2}'
-      # run: echo "version=$(grep 'version=' setup.py | awk -F '"' '{print $2}')" >> $GITHUB_ENV
+      run: |
+        echo "version=$(grep 'version=' setup.py | awk -F '"' '{print $2}')" >> $GITHUB_ENV
+        echo ${{ env.version }}
 
     - name: Running Tests
       run: "pytest -v"
