@@ -15,13 +15,11 @@ jobs:
 
     - name: Get and Set Version
       run: echo "version=$(grep 'version=' setup.py | awk -F '"' '{print $2}')" >> $GITHUB_ENV
-    
-    - name: Print Version
-      run: echo ${{ env.version }}
 
     - name: Running Tests
       run: "pytest -v"
 
+    # FOR FUTURE PR: CODE TEST COVERAGE
     # - name: After Success Submitting Code Coverage
     #   run: | #jacocoTestReport is for testing code coverage, submits the last report to the link
     #     ./gradlew jacocoTestReport
