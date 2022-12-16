@@ -15,15 +15,10 @@ docker-publish:
 
 .PHONY: run-docker
 run-docker:
-	docker run -v $(PWD)/output/:/usr/src/app/output/ ga4gh/drs-compliance-suite:test \
+	docker run -v $(PWD)/output/:/usr/src/app/output/ ga4gh/drs-compliance-suite:${DOCKER_TAG} \
 	--server_base_url "http://host.docker.internal:8089/ga4gh/drs/v1" \
 	--platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" \
 	--auth_type "none" --report_path "./output/test-report.json"
-
-# Sets the correct version for the CWL/WDL workflows, so that the correct Docker image can be pulled from the remote
-.PHONY: set-workflow-versions
-set-workflow-versions:
-	python3 tools/set_cwl_wdl_versions.py
 
 .PHONY: run-dockstore-wdl
 run-dockstore-wdl:

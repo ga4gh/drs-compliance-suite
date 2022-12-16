@@ -4,5 +4,5 @@
     "drsComplianceReportWorkflow.platform_description": "GA4GH reference implementation of DRS specification",
     "drsComplianceReportWorkflow.auth_type": "none",
     "drsComplianceReportWorkflow.report_path": "wdl-test-drs-compliance-report.json",
-    "drsComplianceReportWorkflow.version": "test"
+    "drsComplianceReportWorkflow.version": "0.0.16"
 }
