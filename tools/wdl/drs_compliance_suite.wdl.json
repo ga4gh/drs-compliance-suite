@@ -3,5 +3,6 @@
     "drsComplianceReportWorkflow.platform_name": "ga4gh starter kit drs",
     "drsComplianceReportWorkflow.platform_description": "GA4GH reference implementation of DRS specification",
     "drsComplianceReportWorkflow.auth_type": "none",
-    "drsComplianceReportWorkflow.report_path": "wdl-test-drs-compliance-report.json"
+    "drsComplianceReportWorkflow.report_path": "wdl-test-drs-compliance-report.json",
+    "drsComplianceReportWorkflow.version": "test"
 }

@@ -8,6 +8,7 @@ task createDrsComplianceReport{
         String platform_description
         String auth_type
         String report_path
+        String version
     }
 
     command {
@@ -19,7 +20,7 @@ task createDrsComplianceReport{
     }
 
     runtime {
-        docker: "ga4gh/drs-compliance-suite:test"
+        docker: "ga4gh/drs-compliance-suite:${version}"
     }
 }
 
@@ -31,9 +32,10 @@ workflow drsComplianceReportWorkflow {
         String platform_description
         String auth_type
         String report_path
+        String version
     }
 
     call createDrsComplianceReport { 
-        input: server_base_url=server_base_url, platform_name=platform_name, platform_description=platform_description, auth_type=auth_type, report_path=report_path
+        input: server_base_url=server_base_url, platform_name=platform_name, platform_description=platform_description, auth_type=auth_type, report_path=report_path, version=version
     }
 }
