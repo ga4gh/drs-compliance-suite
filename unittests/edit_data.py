@@ -28,7 +28,7 @@ def get_all_drs_objects():
 
     return data
 
-def get_drs_object(drs_id):
+def get_drs_object(drs_id, expand = False):
     curr_dir = os.path.dirname(__file__) # returns drs-compliance-suite/unittests
     path = os.path.join(curr_dir, 'data', 'drs_objects.json')
 
@@ -37,7 +37,14 @@ def get_drs_object(drs_id):
         
         # Check if object exists
         if drs_id in data:
-            return data[drs_id]
+            if expand and data[drs_id]["is_bundle"] == "1":
+                return data[drs_id]
+            elif not expand and data[drs_id]["is_bundle"] == "1":
+                json_data = data[drs_id]
+                del json_data["contents"]
+                return json_data
+            else:
+                return data[drs_id]
 
 def get_drs_object_passport(drs_id):
     curr_dir = os.path.dirname(__file__) # returns drs-compliance-suite/unittests

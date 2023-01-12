@@ -1,3 +1,4 @@
+from xmlrpc.client import Boolean
 from flask import Flask, request, Response
 import datetime
 from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
@@ -100,8 +101,9 @@ HTTP codes
 @app.route('/ga4gh/drs/v1/objects/<obj_id>', methods=['GET','POST'])
 @conditional_auth(app.config["auth_type"])
 def get_object(obj_id):
+    expand = request.args.get('expand', default = False, type = Boolean)
     accept_type = "application/json"
-    drs_obj = get_drs_object(obj_id)
+    drs_obj = get_drs_object(obj_id, expand)
     if request.method == "GET" and app.config["auth_type"]!="passport":
         if not drs_obj: # Object not found
             error_obj = {

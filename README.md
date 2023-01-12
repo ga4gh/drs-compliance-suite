@@ -49,10 +49,23 @@ python compliance_suite/report_runner.py --server_base_url "http://localhost:500
   * "basic"
   * "bearer"
   * "passport"
+
+Depending on the auth type selected, the appropriate credentials must be provided by the end user
+* credentials may be found for the associated auth type
+  * "basic" : config_basic.json
+  * "bearer" : config_bearer.json
+  * "passport" : config_passport.json
+
 ## Running the good mock server
 ```
 python unittests/good_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8089"
 ```
+Make sure that the good mock server is running smoothely by making a GET request to 
+```
+http://localhost:8089/ga4gh/drs/v1/service-info
+```
+You should get a response status of 200
+
 ### Command Line Arguments
 #### Required:
 * **--app_port** : port where the mock server is running
