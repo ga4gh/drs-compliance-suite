@@ -104,7 +104,7 @@ def get_object(obj_id):
     expand = request.args.get('expand', default = False)
 
     # convert param to bool
-    if expand == "True": 
+    if expand.lower() == "true": 
         expand = True
     else:
         expand == False
