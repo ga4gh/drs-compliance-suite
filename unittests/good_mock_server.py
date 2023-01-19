@@ -101,7 +101,13 @@ HTTP codes
 @app.route('/ga4gh/drs/v1/objects/<obj_id>', methods=['GET','POST'])
 @conditional_auth(app.config["auth_type"])
 def get_object(obj_id):
-    expand = request.args.get('expand', default = False, type = Boolean)
+    expand = request.args.get('expand', default = False)
+
+    # convert param to bool
+    if expand == "True": 
+        expand = True
+    else:
+        expand == False
     accept_type = "application/json"
     drs_obj = get_drs_object(obj_id, expand)
     if request.method == "GET" and app.config["auth_type"]!="passport":
