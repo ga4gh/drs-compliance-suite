@@ -1,6 +1,5 @@
 import json
 import os
-#import pdb;pdb.set_trace()
 
 def write_drs_object(drs_object):
     obj_id = drs_object["id"]
