@@ -1,6 +1,6 @@
 # drs-compliance-suite
 Tests to verify the compliance of a DRS implementation with GA4GH Data Repository Service (DRS) specification. 
-This compliance suite supports the following DRS versions
+This compliance suite currently supports the following DRS versions and will aim to support future versions of DRS as well.
 * DRS 1.2.0
 
 ## Installations

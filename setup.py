@@ -1,7 +1,8 @@
 import setuptools
-from compliance_suite.constants import SUPPORTED_DRS_VERSIONS
 with open("README.md", "r") as fh:
     description = fh.read()
+
+SUPPORTED_DRS_VERSIONS = ["1.2.0"]
 
 setuptools.setup(
     name="drs-compliance",

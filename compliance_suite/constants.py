@@ -1,4 +1,3 @@
-SUPPORTED_DRS_VERSIONS = ["1.2.0"]
 DRS_OBJECT_SCHEMA = "drs_object.json"
 ERROR_SCHEMA = "error.json"
 SERVICE_INFO_SCHEMA = "service_info.json"
