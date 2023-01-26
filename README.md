@@ -51,7 +51,7 @@ python compliance_suite/report_runner.py --server_base_url "http://localhost:500
   * "passport"
 
 Depending on the auth type selected, the appropriate credentials must be provided by the end user
-* credentials may be found for the associated auth type
+* Example credentials may be found for the associated auth type
   * "basic" : config_basic.json
   * "bearer" : config_bearer.json
   * "passport" : config_passport.json
