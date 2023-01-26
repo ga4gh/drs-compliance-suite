@@ -64,7 +64,6 @@ Depending on the auth type selected, the appropriate credentials must be provide
 ```
 python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8085"
 ```
-
 Make sure that the good mock server is running smoothly by making a GET request to 
 ```
 http://localhost:8085/ga4gh/drs/v1/service-info
