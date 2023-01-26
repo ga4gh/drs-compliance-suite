@@ -101,7 +101,7 @@ HTTP codes
 @app.route('/ga4gh/drs/v1/objects/<obj_id>', methods=['GET','POST'])
 @conditional_auth(app.config["auth_type"])
 def get_object(obj_id):
-    expand = request.args.get('expand', default = False)
+    expand = request.args.get('expand', "False")
 
     # convert param to bool
     if expand.lower() == "true": 
