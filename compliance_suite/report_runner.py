@@ -7,7 +7,7 @@ from datetime import datetime
 from compliance_suite.helper import Parser
 import os
 from compliance_suite.constants import *
-from setup import SUPPORTED_DRS_VERSIONS
+from supported_drs_versions import SUPPORTED_DRS_VERSIONS
 from ga4gh.testbed.report.status import Status
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
