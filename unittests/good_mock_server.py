@@ -137,6 +137,14 @@ def get_object(obj_id):
         if app.config["auth_type"]=="passport" and ("accept" in header_content and header_content["accept"] in [accept_type, "*/*"]):
             try:
                 request_body = request.get_json()
+
+                if "expand" in request_body:
+                    #if request_body["expand"].lower() == "true":
+                    #    expand = True
+                    expand = request_body["expand"]
+                
+                drs_obj = get_drs_object(obj_id, expand)
+
                 drs_obj_passport = get_drs_object_passport(obj_id)
                 if not request_body["passports"]:
                     error_obj = {

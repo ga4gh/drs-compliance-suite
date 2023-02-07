@@ -111,7 +111,7 @@ def get_drs_object_passport(drs_id):
 
     with open(path, 'r') as json_file:
         data = json.load(json_file)
-
+        
         # Check if object exists
         if drs_id in data:
             return data[drs_id]
