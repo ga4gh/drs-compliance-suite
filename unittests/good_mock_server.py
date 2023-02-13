@@ -1,5 +1,4 @@
 import string
-from xmlrpc.client import Boolean, boolean
 from flask import Flask, request, Response
 import datetime
 from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
