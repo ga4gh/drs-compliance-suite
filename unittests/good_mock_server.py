@@ -1,4 +1,5 @@
-from xmlrpc.client import Boolean
+import string
+from xmlrpc.client import Boolean, boolean
 from flask import Flask, request, Response
 import datetime
 from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
@@ -139,9 +140,15 @@ def get_object(obj_id):
                 request_body = request.get_json()
 
                 if "expand" in request_body:
-                    #if request_body["expand"].lower() == "true":
-                    #    expand = True
-                    expand = request_body["expand"]
+                    if isinstance(request_body["expand"], bool):                    
+                        expand = request_body["expand"]
+                    elif isinstance(request_body["expand"], str):
+                        if request_body["expand"].lower() == "true": 
+                            expand = True
+                        else:
+                            expand = False 
+                    else:
+                        expand = False
                 
                 drs_obj = get_drs_object(obj_id, expand)
 
