@@ -84,7 +84,7 @@
         "created_time",
         "checksums"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     }
   }
 }
