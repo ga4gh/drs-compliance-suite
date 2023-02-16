@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error Response",
+  "type": "object",
+  "description": "An object that can optionally include information about the error.",
+  "$ref": "error.json#/definitions/error",
+  "definitions": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "description": "A detailed error message."
+        },
+        "status_code": {
+          "type": "integer",
+          "description": "The integer representing the HTTP status code (e.g. 200, 404)."
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

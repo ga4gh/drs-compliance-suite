@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Access URL",
+  "type": "object",
+  "$ref": "access_url.json#/definitions/access_url",
+  "definitions": {
+    "access_url": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "A fully resolvable URL that can be used to fetch the actual object bytes."
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "An optional list of headers to include in the HTTP request to `url`. These headers can be used to provide auth tokens required to fetch the object bytes."
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

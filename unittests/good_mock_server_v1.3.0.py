@@ -1,4 +1,3 @@
-import string
 from flask import Flask, request, Response
 import datetime
 from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
@@ -36,7 +35,6 @@ def conditional_auth(auth_config):
 
 @auth_bearer.verify_token
 def verify_token(token):
-    # import pdb; pdb.set_trace()
     if token in tokens:
         return tokens[token]
 
@@ -98,16 +96,16 @@ HTTP codes
 
 # GET Info about a DRS Object or
 # GET Info about a DRS Object through POST'ing a Passport
-@app.route('/ga4gh/drs/v1/objects/<obj_id>', methods=['GET','POST'])
+@app.route('/ga4gh/drs/v1/objects/<obj_id>', methods=['GET','POST','OPTIONS'])
 @conditional_auth(app.config["auth_type"])
 def get_object(obj_id):
     expand = request.args.get('expand', "False")
 
     # convert param to bool
-    if expand.lower() == "true": 
+    if expand.lower() == "true":
         expand = True
     else:
-        expand == False
+        expand = False
     accept_type = "application/json"
     drs_obj = get_drs_object(obj_id, expand)
     if request.method == "GET" and app.config["auth_type"]!="passport":
@@ -139,16 +137,16 @@ def get_object(obj_id):
                 request_body = request.get_json()
 
                 if "expand" in request_body:
-                    if isinstance(request_body["expand"], bool):                    
+                    if isinstance(request_body["expand"], bool):
                         expand = request_body["expand"]
                     elif isinstance(request_body["expand"], str):
-                        if request_body["expand"].lower() == "true": 
+                        if request_body["expand"].lower() == "true":
                             expand = True
                         else:
-                            expand = False 
+                            expand = False
                     else:
                         expand = False
-                
+
                 drs_obj = get_drs_object(obj_id, expand)
 
                 drs_obj_passport = get_drs_object_passport(obj_id)
@@ -190,6 +188,37 @@ def get_object(obj_id):
                        "Content-Type must be 'application/json'"
             }
             return Response(response=json.dumps(error_obj), status=500, mimetype=accept_type)
+
+    # Get Authorization info about a DrsObject.
+    elif request.method == "OPTIONS":
+
+        # Object not found
+        if not drs_obj:
+            error_obj = {
+                "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "status_code": 404,
+                "error": "Not Found",
+                "msg": "No DrsObject found by id: " + obj_id
+            }
+            return Response(response=json.dumps(error_obj), status=404, mimetype=accept_type)
+
+        authorizations_obj = {}
+        if app.config["auth_type"] == "basic":
+            authorizations_obj["supported_types"] = ["BasicAuth"]
+            resp_status_code = 200
+        elif app.config["auth_type"] == "passport":
+            authorizations_obj["supported_types"] = ["PassportAuth"]
+            authorizations_obj["passport_auth_issuers"] = ["passport_auth_iss_1"]
+            resp_status_code = 200
+        elif app.config["auth_type"] == "bearer":
+            authorizations_obj["supported_types"] = ["BearerAuth"]
+            authorizations_obj["bearer_auth_issuers"] = ["bearer_auth_iss_1"]
+            resp_status_code = 200
+        else:
+            authorizations_obj["supported_types"] = ["None"]
+            resp_status_code = 204 # status code 204 - No content is returned
+        return Response(response=json.dumps(authorizations_obj), status=resp_status_code, mimetype=accept_type)
+
     else:
         error_obj = {
             "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -197,7 +226,7 @@ def get_object(obj_id):
             "error": "The request is malformed",
             "msg": "HTTP Method Not Allowed"
         }
-        return Response(response=json.dumps(error_obj), status=400, mimetype=accept_type)
+        return Response(response=json.dumps(error_obj), status=204, mimetype=accept_type)
 
 
 # Get a URL for fetching bytes or

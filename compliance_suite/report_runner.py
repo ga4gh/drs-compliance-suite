@@ -84,19 +84,6 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
         case_description = "check if the content-type is " + expected_content_type,
         response = response)
 
-    # if any of the above two cases fail, the report runner
-    # will not be able to obtain the server's implemented DRS version number.
-    # Finalize and return report
-    for this_case in service_info_test.get_cases():
-        if this_case.get_status() != Status.PASS:
-            service_info_test.set_message("Stopping the report as the implemented DRS version "
-                                          "can not be obtained from the service-info endpoint")
-            service_info_test.set_end_time_now()
-            service_info_phase.set_end_time_now()
-            report_object.set_end_time_now()
-            report_object.finalize()
-            return report_object.to_json()
-
     ### CASE: response schema
     add_case_response_schema(
         test_object = service_info_test,
@@ -106,14 +93,22 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
         response = response)
 
     # Get the DRS version number from service-info
-    # If the version is not supported by the compliance suite,
+    # If the version is not avaible or is supported by the compliance suite,
     # finalize and return report
 
     response_json = response.json()
     server_drs_version = None
     if "type" in response_json and "version" in response_json["type"]:
         server_drs_version = response_json["type"]["version"]
-    if server_drs_version not in SUPPORTED_DRS_VERSIONS \
+    if server_drs_version is None:
+        service_info_test.set_message("Stopping the report as the implemented DRS version "
+                                      "can not be obtained from the service-info endpoint")
+        service_info_test.set_end_time_now()
+        service_info_phase.set_end_time_now()
+        report_object.set_end_time_now()
+        report_object.finalize()
+        return report_object.to_json()
+    elif server_drs_version not in SUPPORTED_DRS_VERSIONS \
             or response_json["type"]["artifact"].lower() != "drs":
         service_info_test.set_message("Stopping the report as the implemented DRS version " + server_drs_version +
                                       " is not supported by this Compliance Suite. "
