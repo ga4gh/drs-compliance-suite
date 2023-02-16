@@ -33,10 +33,10 @@ export PYTHONPATH=<absolute path to drs-compliance-suite>
 
 ## Running natively in a developer environment
 
-* First spin up a DRS starter kit on port 5000 or a port of your choice. Make sure to specify the port number correctly in the next step.
+* First spin up a DRS starter kit on port 8085 or a port of your choice. Make sure to specify the port number correctly in the next step.
 * The following command will run the DRS complaince suite against the specified DRS implementation.
 ``` 
-python compliance_suite/report_runner.py --server_base_url "http://localhost:5000/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "basic"
+python compliance_suite/report_runner.py --server_base_url "http://localhost:8085/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "basic"
 ```
 ### Command Line Arguments
 #### <TODO: Add a table with default values, data type !!>
@@ -56,13 +56,25 @@ Depending on the auth type selected, the appropriate credentials must be provide
   * "bearer" : compliance_suite/config/config_bearer.json
   * "passport" : compliance_suite/config/config_passport.json
 
-## Running the good mock server
+## Running the good mock server that follows DRS v1.2.0 specification on port 8085
 ```
-python unittests/good_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8089"
+python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8085"
 ```
+
 Make sure that the good mock server is running smoothly by making a GET request to 
 ```
-http://localhost:8089/ga4gh/drs/v1/service-info
+http://localhost:8085/ga4gh/drs/v1/service-info
+```
+You should get a response status of 200
+
+## Running the good mock server that follows DRS v1.3.0 specification on port 8086
+```
+python unittests/good_mock_server_v1.3.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8086"
+```
+
+Make sure that the good mock server is running smoothly by making a GET request to
+```
+http://localhost:8086/ga4gh/drs/v1/service-info
 ```
 You should get a response status of 200
 
@@ -81,7 +93,8 @@ You should get a response status of 200
 Note: Both bad and good mock servers should be running beforehand
 #### Running the mock servers
 ```
-python unittests/good_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8089"
+python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8085"
+python unittests/good_mock_server_v1.3.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8086"
 python unittests/bad_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8088"
 ```
 ###### Run the tests
