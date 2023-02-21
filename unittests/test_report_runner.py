@@ -8,7 +8,7 @@ def test_report_runner():
         open("output/drs_compliance_report.json", "r").read()
     )
     expect_final_json = json.loads(
-        open("unittests/output/expect_final_json.json", "r").read()
+        open("unittests/output/expect_good.json", "r").read()
     )
     actual_json_s = str(actual_final_json).replace("'", '"').replace("\\","")
     expect_json_s = str(expect_final_json).replace("'", '"').replace("\\","")

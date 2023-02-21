@@ -1,0 +1,79 @@
+{
+    "schema_name": "ga4gh-testbed-report",
+    "schema_version": "0.1.0",
+    "testbed_name": [
+        "DRS Compliance Suite"
+    ],
+    "testbed_version": [
+        "v0.0.0"
+    ],
+    "testbed_description": [
+        "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification"
+    ],
+    "platform_name": "bad mock server",
+    "platform_description": "huh",
+    "input_parameters": {},
+    "start_time": "2023-02-21T15:23:54Z",
+    "end_time": "2023-02-21T15:23:55Z",
+    "status": "FAIL",
+    "summary": {
+        "unknown": 0,
+        "passed": 1,
+        "warned": 0,
+        "failed": 1,
+        "skipped": 0
+    },
+    "phases": [
+        {
+            "phase_name": "service info endpoint",
+            "phase_description": "run all the tests for service_info endpoint",
+            "start_time": "2023-02-21T15:23:54Z",
+            "end_time": "2023-02-21T15:23:55Z",
+            "status": "FAIL",
+            "summary": {
+                "unknown": 0,
+                "passed": 1,
+                "warned": 0,
+                "failed": 1,
+                "skipped": 0
+            },
+            "tests": [
+                {
+                    "test_name": "service-info",
+                    "test_description": "validate service-info status code, content-type and response schemas",
+                    "start_time": "2023-02-21T15:23:54Z",
+                    "end_time": "2023-02-21T15:23:55Z",
+                    "status": "FAIL",
+                    "summary": {
+                        "unknown": 0,
+                        "passed": 1,
+                        "warned": 0,
+                        "failed": 1,
+                        "skipped": 0
+                    },
+                    "message": "Stopping the report as the implemented DRS version can not be obtained from the service-info endpoint",
+                    "cases": [
+                        {
+                            "case_name": "service-info response status code validation",
+                            "case_description": "check if the response status code is 200",
+                            "log_messages": [],
+                            "start_time": "2023-02-21T15:23:55Z",
+                            "end_time": "2023-02-21T15:23:55Z",
+                            "status": "FAIL",
+                            "message": "response status code = 400"
+                        },
+                        {
+                            "case_name": "service-info response content-type validation",
+                            "case_description": "check if the content-type is application/json",
+                            "log_messages": [],
+                            "start_time": "2023-02-21T15:23:55Z",
+                            "end_time": "2023-02-21T15:23:55Z",
+                            "status": "PASS",
+                            "message": "content type = application/json"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
