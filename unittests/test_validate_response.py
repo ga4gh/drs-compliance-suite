@@ -1,4 +1,3 @@
-import json
 from compliance_suite.validate_response import ValidateResponse
 
 def test_constructor():
@@ -10,7 +9,6 @@ def test_constructor():
     assert tvr.case == ""
 
 def test_valid_status_code():
-    tvr = ValidateResponse()
     actual_json = json.loads(
         open("unittests/output/expect_final_json.json", "r").read()
     )
@@ -22,7 +20,6 @@ def test_valid_status_code():
             assert cases["status"] == "PASS"
     
 def test_valid_content_type():
-    tvr = ValidateResponse()
     actual_json = json.loads(
         open("unittests/output/expect_final_json.json", "r").read()
     )
@@ -34,7 +31,6 @@ def test_valid_content_type():
             assert cases["status"] == "PASS"
     
 def test_valid_response_schema():
-    tvr = ValidateResponse()
     actual_json = json.loads(
         open("unittests/output/expect_final_json.json", "r").read()
     )
@@ -45,6 +41,3 @@ def test_valid_response_schema():
             assert cases["message"] == "Schema Validation Successful"
             assert cases["status"] == "PASS"
     
-
-# need to call report_runner function but it only returns as json
-# where to find attributes for tvr in this case? 
