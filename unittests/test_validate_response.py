@@ -1,5 +1,6 @@
 import json
 from compliance_suite.validate_response import ValidateResponse
+from compliance_suite.report_runner import *
 
 def test_constructor():
 
@@ -10,10 +11,10 @@ def test_constructor():
     assert tvr.case == ""
 
 def test_valid_status_code():
-    actual_json = json.loads(
-        open("output/drs_compliance_report.json", "r").read()
-    )
-
+    actual_json = json.loads(report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v1",
+                                            platform_name = "good mock server",
+                                            platform_description = "test",
+                                            auth_type = "basic"))
     for phase in actual_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][0]
@@ -21,9 +22,10 @@ def test_valid_status_code():
             assert cases["status"] == "PASS"
     
 def test_valid_content_type():
-    actual_json = json.loads(
-        open("output/drs_compliance_report.json", "r").read()
-    )
+    actual_json = json.loads(report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v1",
+                                            platform_name = "good mock server",
+                                            platform_description = "test",
+                                            auth_type = "basic"))
 
     for phase in actual_json["phases"]:
         for test in phase["tests"]:
@@ -32,9 +34,10 @@ def test_valid_content_type():
             assert cases["status"] == "PASS"
     
 def test_valid_response_schema():
-    actual_json = json.loads(
-        open("output/drs_compliance_report.json", "r").read()
-    )
+    actual_json = json.loads(report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v1",
+                                            platform_name = "good mock server",
+                                            platform_description = "test",
+                                            auth_type = "basic"))
 
     for phase in actual_json["phases"]:
         for test in phase["tests"]:

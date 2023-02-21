@@ -5,10 +5,15 @@ from compliance_suite.report_runner import *
 def test_report_runner():
 
     #returns report_object.to_json()
-    os.system("python compliance_suite/report_runner.py --server_base_url \"http://localhost:8089/ga4gh/drs/v1\" --platform_name \"good mock server\" --auth_type \"basic\"")
-    actual_final_json = json.loads(
-        open("output/drs_compliance_report.json", "r").read()
-    )
+   # os.system("python compliance_suite/report_runner.py --server_base_url \"http://localhost:8089/ga4gh/drs/v1\" --platform_name \"good mock server\" --auth_type \"basic\"")
+    #actual_final_json = json.loads(
+     #   open("output/drs_compliance_report.json", "r").read()
+    #)
+
+    actual_final_json = json.loads(report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v1",
+                                    platform_name = "good mock server",
+                                    platform_description = "test",
+                                    auth_type = "basic"))
 
     # remove timestamps
     actual_final_json["start_time"] = ""
