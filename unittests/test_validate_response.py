@@ -1,3 +1,4 @@
+import json
 from compliance_suite.validate_response import ValidateResponse
 
 def test_constructor():
@@ -10,7 +11,7 @@ def test_constructor():
 
 def test_valid_status_code():
     actual_json = json.loads(
-        open("unittests/output/expect_final_json.json", "r").read()
+        open("output/drs_compliance_report.json", "r").read()
     )
 
     for phase in actual_json["phases"]:
@@ -21,7 +22,7 @@ def test_valid_status_code():
     
 def test_valid_content_type():
     actual_json = json.loads(
-        open("unittests/output/expect_final_json.json", "r").read()
+        open("output/drs_compliance_report.json", "r").read()
     )
 
     for phase in actual_json["phases"]:
@@ -32,7 +33,7 @@ def test_valid_content_type():
     
 def test_valid_response_schema():
     actual_json = json.loads(
-        open("unittests/output/expect_final_json.json", "r").read()
+        open("output/drs_compliance_report.json", "r").read()
     )
 
     for phase in actual_json["phases"]:
