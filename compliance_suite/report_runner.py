@@ -93,7 +93,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
         response = response)
 
     # Get the DRS version number from service-info
-    # If the version is not avaible or is supported by the compliance suite,
+    # If the version is not available or is not supported by the compliance suite,
     # finalize and return report
 
     response_json = response.json()
