@@ -44,4 +44,14 @@ def test_valid_response_schema():
             cases = test["cases"][2]
             assert cases["message"] == "Schema Validation Successful"
             assert cases["status"] == "PASS"
-    
+
+def test_invalid_status_code():
+    actual_json = json.loads(report_runner(server_base_url = "http://localhost:8088/ga4gh/drs/v1",
+                                            platform_name = "bad mock server",
+                                            platform_description = "test",
+                                            auth_type = "basic"))
+    for phase in actual_json["phases"]:
+        for test in phase["tests"]:
+            cases = test["cases"][0]
+            assert cases["message"] == "response status code = 400"
+            assert cases["status"] == "FAIL"

@@ -11,7 +11,7 @@
         "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification"
     ],
     "platform_name": "bad mock server",
-    "platform_description": "huh",
+    "platform_description": "test",
     "input_parameters": {},
     "start_time": "2023-02-21T15:23:54Z",
     "end_time": "2023-02-21T15:23:55Z",
