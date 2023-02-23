@@ -8,7 +8,7 @@ def test_report_runner():
                                     platform_description = "test",
                                     auth_type = "basic"))
 
-    # remove timestamps
+    # remove timestamps, otherwise assert will fail 100%
     actual_final_json["start_time"] = ""
     actual_final_json["end_time"] = ""
     for phase in actual_final_json["phases"]:
