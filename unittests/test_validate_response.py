@@ -1,5 +1,3 @@
-import json
-from compliance_suite.validate_response import ValidateResponse
 from compliance_suite.report_runner import *
 
 def test_constructor():
