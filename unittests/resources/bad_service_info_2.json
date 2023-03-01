@@ -1,0 +1,18 @@
+{
+  "id": "test id",
+  "name": "test DRS implementation",
+  "description": "test DRS implementation",
+  "contactUrl": "test@test.org",
+  "documentationUrl": "https://test.com",
+  "environment": "test",
+  "version": "0.test.1",
+  "type": {
+    "group": "org.ga4gh",
+    "artifact": "not_drs",
+    "version": "1.2.0"
+  },
+  "organization": {
+    "name": "test org",
+    "url": "https://test.org"
+  }
+}
