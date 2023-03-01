@@ -13,8 +13,8 @@
     "platform_name": "bad mock server",
     "platform_description": "test",
     "input_parameters": {},
-    "start_time": "2023-02-21T15:23:54Z",
-    "end_time": "2023-02-21T15:23:55Z",
+    "start_time": "",
+    "end_time": "",
     "status": "FAIL",
     "summary": {
         "unknown": 0,
@@ -27,8 +27,8 @@
         {
             "phase_name": "service info endpoint",
             "phase_description": "run all the tests for service_info endpoint",
-            "start_time": "2023-02-21T15:23:54Z",
-            "end_time": "2023-02-21T15:23:55Z",
+            "start_time": "",
+            "end_time": "",
             "status": "FAIL",
             "summary": {
                 "unknown": 0,
@@ -41,8 +41,8 @@
                 {
                     "test_name": "service-info",
                     "test_description": "validate service-info status code, content-type and response schemas",
-                    "start_time": "2023-02-21T15:23:54Z",
-                    "end_time": "2023-02-21T15:23:55Z",
+                    "start_time": "",
+                    "end_time": "",
                     "status": "FAIL",
                     "summary": {
                         "unknown": 0,
@@ -57,8 +57,8 @@
                             "case_name": "service-info response status code validation",
                             "case_description": "check if the response status code is 200",
                             "log_messages": [],
-                            "start_time": "2023-02-21T15:23:55Z",
-                            "end_time": "2023-02-21T15:23:55Z",
+                            "start_time": "",
+                            "end_time": "",
                             "status": "FAIL",
                             "message": "response status code = 400"
                         },
@@ -66,8 +66,8 @@
                             "case_name": "service-info response content-type validation",
                             "case_description": "check if the content-type is application/json",
                             "log_messages": [],
-                            "start_time": "2023-02-21T15:23:55Z",
-                            "end_time": "2023-02-21T15:23:55Z",
+                            "start_time": "",
+                            "end_time": "",
                             "status": "PASS",
                             "message": "content type = application/json"
                         }
