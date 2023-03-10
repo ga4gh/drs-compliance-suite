@@ -6,7 +6,8 @@ from ga4gh.testbed.report.test import Test
 from ga4gh.testbed.report.status import Status
 from unittests.resources.expected_drs_objects import *
 
-drs_id = "697907bf-d5bd-433e-aac2-1747f1faf366"
+# TODO: format MockResponse calls
+
 
 # spec has required fields
 # unittest tests if cs is testing correctly
