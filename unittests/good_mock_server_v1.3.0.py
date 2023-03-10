@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, make_response, jsonify
 import datetime
 from edit_data import get_drs_object, get_drs_access_url, get_drs_object_passport
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
@@ -18,6 +18,15 @@ tokens = {
 
 auth_basic = HTTPBasicAuth()
 auth_bearer = HTTPTokenAuth(scheme="Bearer")
+
+@auth_bearer.error_handler
+@auth_basic.error_handler
+def unauthorized():
+    return make_response(jsonify({
+        "timestamp": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "status_code": 401,
+        "error": "Request is unauthorized",
+        "msg": "Invalid Credentials"}), 401)
 
 def conditional_auth(auth_config):
     def decorator(func):
