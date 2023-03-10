@@ -7,6 +7,8 @@ def test_report_runner():
                                     platform_description = "test",
                                     auth_type = "basic"))
 
+    # TODO: None and BearerAuth 
+
     # remove timestamps, otherwise assert will fail 100%
     actual_final_json["start_time"] = ""
     actual_final_json["end_time"] = ""

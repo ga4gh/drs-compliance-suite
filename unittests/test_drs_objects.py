@@ -27,7 +27,7 @@ def test_valid_drs_object():
     case_name = "test valid drs-object"
     case_description = "validate drs-object "
 
-    response = MockResponse(expected_good_drs_object, 200, {})
+    response = MockResponse(response = expected_good_drs_object)
 
     add_case_response_schema(test_object, schema_name, case_name, case_description, response)
 
@@ -43,7 +43,7 @@ def test_invalid_id():
     case_name = "test invalid id"
     case_description = "validate drs-object id"
 
-    response = MockResponse(expected_bad_drs_objects[1], 200, {})
+    response = MockResponse(expected_bad_drs_objects[1], None, {})
 
     add_case_response_schema(test_object, schema_name, case_name, case_description, response)
 
