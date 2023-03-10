@@ -1,6 +1,6 @@
 # Mimicks a HTTP request response
 class MockResponse():
-    def __init__(self, response, status_code, headers):
+    def __init__(self, response=None, status_code=None, headers=None):
         self.response = response
         self.status_code = status_code
         self.headers = headers

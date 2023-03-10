@@ -78,13 +78,13 @@ def test_valid_status_code():
     assert test_object.cases[0].status == Status.PASS
 
 def test_invalid_status_code():
-    # test for expected status code = 200
+    # test for expected status code = 500
     # expects case status = FAIL
     test_object = new_test_object("test_bad_status_code", "testing service-info")
     expected_status_code = "200"
     case_name = "test status code validation 2"
     case_description = "validate service-info status code"
-    response = MockResponse(bad_service_info_resp_1, 200, None)
+    response = MockResponse(bad_service_info_resp_1, 500, None)
 
     add_case_status_code(test_object, expected_status_code, case_name, case_description, response)
 
@@ -116,3 +116,7 @@ def test_invalid_content_type():
     add_case_content_type(test_object, expected_content_type, case_name, case_description, response)
 
     assert test_object.cases[0].status == Status.FAIL
+
+
+# TODO: a type.group value of org.ga4gh
+#       a type.artifact value of drs
