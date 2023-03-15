@@ -13,7 +13,6 @@ actual_bad_json = json.loads(report_runner(server_base_url = "http://localhost:8
                                         platform_description = "test",
                                         auth_type = "basic"))
 def test_constructor():
-
     tvr = ValidateResponse()
     assert tvr.actual_response == ""
     assert tvr.expected_response == ""
@@ -28,7 +27,6 @@ def test_valid_status_code():
             assert cases["status"] == "PASS"
     
 def test_valid_content_type():
-
     for phase in actual_good_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][1]
@@ -36,7 +34,6 @@ def test_valid_content_type():
             assert cases["status"] == "PASS"
     
 def test_valid_response_schema():
-
     for phase in actual_good_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][2]
@@ -44,9 +41,11 @@ def test_valid_response_schema():
             assert cases["status"] == "PASS"
 
 def test_invalid_status_code():
-
     for phase in actual_bad_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][0]
             assert cases["message"] == "response status code = 400"
             assert cases["status"] == "FAIL"
+
+def test_authorization():
+    return
