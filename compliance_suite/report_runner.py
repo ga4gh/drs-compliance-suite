@@ -11,6 +11,12 @@ from supported_drs_versions import SUPPORTED_DRS_VERSIONS
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
+
+# TODO: 1. endpoint calls into a function
+# TODO: 2. get version from params and confirm its in the list of supported versions.
+#  parse args & setup.py should get the list of supported version from one source
+
+
 def report_runner(server_base_url, platform_name, platform_description, auth_type):
 
     # Read input DRS objects from config folder
@@ -49,6 +55,8 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
         service_info_phase,
         server_base_url,
         headers,
+        schema_dir = "",
+        schema_file = SERVICE_INFO_SCHEMA,
         expected_status_code = "200",
         expected_content_type = "application/json")
 
@@ -128,6 +136,8 @@ def test_service_info(
         service_info_phase,
         server_base_url,
         headers,
+        schema_dir,
+        schema_file,
         expected_status_code,
         expected_content_type):
     service_info_test = service_info_phase.add_test()
@@ -142,32 +152,15 @@ def test_service_info(
         headers = headers
     )
 
-    ### CASE: response status_code
-    add_test_case(
+    add_common_test_cases(
         test_object = service_info_test,
-        case_type = "status_code",
-        case_name = "service-info response status code validation",
-        case_description = f"Check if the response status code is {expected_status_code}",
+        endpoint_name = "Service Info",
         response = response,
-        expected_status_code = expected_status_code)
+        expected_status_code = expected_status_code,
+        expected_content_type = expected_content_type,
+        schema_dir = schema_dir,
+        schema_file = schema_file)
 
-    ### CASE: response content_type
-    add_test_case(
-        test_object = service_info_test,
-        case_type = "content_type",
-        case_name = "service-info response content-type validation",
-        case_description = f"Check if the content-type is {expected_content_type}",
-        response = response,
-        expected_content_type = expected_content_type)
-
-    ### CASE: response schema
-    add_test_case(
-        test_object = service_info_test,
-        case_type = "response_schema",
-        case_name = "service-info success response schema validation",
-        case_description = f"Validate service-info response schema when status = {expected_status_code}",
-        response = response,
-        schema_name = SERVICE_INFO_SCHEMA)
     service_info_test.set_end_time_now()
 
 def test_drs_object_info(
@@ -186,6 +179,7 @@ def test_drs_object_info(
     drs_object_test.set_test_name(f"run test cases on the drs object info endpoint for drs id = {drs_object_id}")
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
 
+    # TODO: refactor this!!!
     if auth_type == "passport":
         drs_object_passport = drs_object_passport_map[drs_object_id]
         request_body = {"passports":[drs_object_passport]}
@@ -195,32 +189,14 @@ def test_drs_object_info(
         response = requests.get(server_base_url + DRS_OBJECT_INFO_URL + drs_object_id,
                                 headers=headers)
 
-    ### CASE: response status_code
-    add_test_case(
-        test_object=drs_object_test,
-        case_type="status_code",
-        case_name="DRS object response status code validation",
-        case_description=f"Check if the response status code is {expected_status_code}",
-        response=response,
-        expected_status_code=expected_status_code)
-
-    ### CASE: response content_type
-    add_test_case(
-        test_object=drs_object_test,
-        case_type="content_type",
-        case_name="DRS object response content-type validation",
-        case_description=f"Check if the content-type is {expected_content_type}",
-        response=response,
-        expected_content_type=expected_content_type)
-
-    ### CASE: response schema
-    add_test_case(
-        test_object=drs_object_test,
-        case_type="response_schema",
-        case_name="DRS object response schema validation",
-        case_description=f"Validate DRS object response schema when status = {expected_status_code}",
-        response=response,
-        schema_name=schema_dir + schema_file)
+    add_common_test_cases(
+        test_object = drs_object_test,
+        endpoint_name = "DRS Object Info",
+        response = response,
+        expected_status_code = expected_status_code,
+        expected_content_type = expected_content_type,
+        schema_dir = schema_dir,
+        schema_file = schema_file)
 
     drs_object_test.set_end_time_now()
 
@@ -255,34 +231,59 @@ def test_drs_object_access(
                                     url = server_base_url + DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
                                     headers = headers)
 
+    add_common_test_cases(
+        test_object = drs_access_test,
+        endpoint_name = "DRS Access",
+        response = response,
+        expected_status_code = expected_status_code,
+        expected_content_type = expected_content_type,
+        schema_dir = schema_dir,
+        schema_file = schema_file)
+
+    drs_access_test.set_end_time_now()
+
+def add_common_test_cases(
+        test_object,
+        endpoint_name,
+        response,
+        expected_status_code,
+        expected_content_type,
+        schema_dir,
+        schema_file):
+    """
+    Adds common test cases to a Test object
+    Common test cases:
+        1. validate response status_code
+        2. validate response content_type
+        3. validate response json schema
+    """
+
     ### CASE: response status_code
     add_test_case(
-        test_object = drs_access_test,
+        test_object = test_object,
         case_type = "status_code",
-        case_name = "DRS access response status code validation",
+        case_name = f"{endpoint_name} response status code validation",
         case_description = f"Check if the response status code is {expected_status_code}",
         response = response,
         expected_status_code = expected_status_code)
 
     ### CASE: response content_type
     add_test_case(
-        test_object = drs_access_test,
+        test_object = test_object,
         case_type = "content_type",
-        case_name = "DRS access response content-type validation",
+        case_name = f"{endpoint_name} response content-type validation",
         case_description = f"Check if the content-type is {expected_content_type}",
         response = response,
         expected_content_type = expected_content_type)
 
     ### CASE: response schema
     add_test_case(
-        test_object = drs_access_test,
+        test_object = test_object,
         case_type = "response_schema",
-        case_name = "DRS access response schema validation",
-        case_description = f"Validate DRS access response schema when status = {expected_status_code}",
+        case_name = f"{endpoint_name} response schema validation",
+        case_description = f"Validate {endpoint_name}  response schema when status = {expected_status_code}",
         response = response,
-        schema_name = schema_dir + schema_file)
-
-    drs_access_test.set_end_time_now()
+        schema_name = os.path.join(schema_dir, schema_file))
 
 def add_test_case(test_object, case_type, **kwargs):
     """
