@@ -68,7 +68,6 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
         # TODO: Add code to figure out what the expected_status_code
         #  and expected_content_type are for each drs_object_id.
-
         test_drs_object_info(
             drs_object_phase,
             server_base_url,
@@ -86,69 +85,25 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
     drs_object_phase.set_end_time_now()
 
-    # TEST: GET /objects/{drs_id}/access/{access_id}
+    # PHASE: /objects/{drs_id}/access/{access_id}
     drs_access_phase = report_object.add_phase()
     drs_access_phase.set_phase_name("drs access endpoint")
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
 
     for this_drs_object in input_drs_objects:
-        expected_status_code = "200"
-        expected_content_type = "application/json"
+        test_drs_object_access(
+            drs_access_phase,
+            server_base_url,
+            headers,
+            auth_type,
+            drs_object_passport_map = {},
+            drs_object_id = this_drs_object["drs_id"],
+            drs_access_id = this_drs_object["access_id"],
+            schema_dir = drs_version_schema_dir,
+            schema_file = DRS_ACCESS_SCHEMA,
+            expected_status_code = "200",
+            expected_content_type = "application/json")
 
-        ### TEST: GET /objects/{drs_id}/access/{access_id}
-        drs_access_test = drs_access_phase.add_test()
-        drs_access_test.set_test_name("run test cases on the drs access endpoint for "
-                                      "drs id = " + this_drs_object["drs_id"]
-                                      + " and access id = " + this_drs_object["access_id"])
-        drs_access_test.set_test_description("validate drs access status code, content-type and "
-                                             "response schemas")
-
-        this_drs_object_passport = None
-        if auth_type=="passport":
-            this_drs_object_passport = drs_object_passport_map[this_drs_object["drs_id"]]
-            request_body = {"passports":[this_drs_object_passport]}
-            response = requests.request(
-                method = "POST",
-                url = server_base_url
-                      + DRS_OBJECT_INFO_URL + this_drs_object["drs_id"]
-                      + DRS_ACCESS_URL + this_drs_object["access_id"],
-                headers = headers,
-                json = request_body)
-        else:
-            response = requests.request(method = "GET",
-                                        url = server_base_url
-                                              + DRS_OBJECT_INFO_URL + this_drs_object["drs_id"]
-                                              + DRS_ACCESS_URL + this_drs_object["access_id"],
-                                        headers = headers)
-
-        ### CASE: response status_code
-        add_test_case(
-            test_object = drs_access_test,
-            case_type = "status_code",
-            case_name = "DRS access response status code validation",
-            case_description = f"Check if the response status code is {expected_status_code}",
-            response = response,
-            expected_status_code = expected_status_code)
-
-        ### CASE: response content_type
-        add_test_case(
-            test_object = drs_access_test,
-            case_type = "content_type",
-            case_name = "DRS access response content-type validation",
-            case_description = f"Check if the content-type is {expected_content_type}",
-            response = response,
-            expected_content_type = expected_content_type)
-
-        ### CASE: response schema
-        add_test_case(
-            test_object = drs_access_test,
-            case_type = "response_schema",
-            case_name = "DRS access response schema validation",
-            case_description = f"Validate DRS access response schema when status = {expected_status_code}",
-            response = response,
-            schema_name = drs_version_schema_dir + DRS_ACCESS_SCHEMA)
-
-        drs_access_test.set_end_time_now()
     drs_access_phase.set_end_time_now()
     report_object.set_end_time_now()
     report_object.finalize()
@@ -168,28 +123,6 @@ def get_authentication_config(auth_type):
     if auth_type in ("basic","bearer","passport"):
         with open(os.path.join(CONFIG_DIR, f"config_{auth_type}.json"), "r") as f:
             return json.load(f)
-
-def add_test_case(test_object, case_type, **kwargs):
-    """
-    Adds a test case to a Test object based on type of the case.
-    """
-    test_case = test_object.add_case()
-    test_case.set_case_name(kwargs['case_name'])
-    test_case.set_case_description(kwargs['case_description'])
-
-    validate_response = ValidateResponse()
-    validate_response.set_case(test_case)
-    validate_response.set_actual_response(kwargs['response'])
-
-    if case_type == 'status_code':
-        validate_response.validate_status_code(kwargs['expected_status_code'])
-    elif case_type == 'content_type':
-        validate_response.validate_content_type(kwargs['expected_content_type'])
-    elif case_type == 'response_schema':
-        validate_response.set_response_schema_file(kwargs['schema_name'])
-        validate_response.validate_response_schema()
-
-    test_case.set_end_time_now()
 
 def test_service_info(
         service_info_phase,
@@ -254,8 +187,8 @@ def test_drs_object_info(
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
 
     if auth_type == "passport":
-        this_drs_object_passport = drs_object_passport_map[drs_object_id]
-        request_body = {"passports":[this_drs_object_passport]}
+        drs_object_passport = drs_object_passport_map[drs_object_id]
+        request_body = {"passports":[drs_object_passport]}
         response = requests.post(server_base_url + DRS_OBJECT_INFO_URL + drs_object_id,
                                  headers=headers, json=request_body)
     else:
@@ -291,6 +224,87 @@ def test_drs_object_info(
 
     drs_object_test.set_end_time_now()
 
+def test_drs_object_access(
+        drs_access_phase,
+        server_base_url,
+        headers,
+        auth_type,
+        drs_object_passport_map,
+        drs_object_id,
+        drs_access_id,
+        schema_dir,
+        schema_file,
+        expected_status_code,
+        expected_content_type):
+
+    drs_access_test = drs_access_phase.add_test()
+    drs_access_test.set_test_name(f"run test cases on the drs access endpoint for drs id = {drs_object_id} "
+                                  f"and access id = {drs_access_id}")
+    drs_access_test.set_test_description("validate drs access status code, content-type and response schemas")
+
+    if auth_type=="passport":
+        drs_object_passport = drs_object_passport_map[drs_object_id]
+        request_body = {"passports":[drs_object_passport]}
+        response = requests.request(
+            method = "POST",
+            url = server_base_url + DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
+            headers = headers,
+            json = request_body)
+    else:
+        response = requests.request(method = "GET",
+                                    url = server_base_url + DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
+                                    headers = headers)
+
+    ### CASE: response status_code
+    add_test_case(
+        test_object = drs_access_test,
+        case_type = "status_code",
+        case_name = "DRS access response status code validation",
+        case_description = f"Check if the response status code is {expected_status_code}",
+        response = response,
+        expected_status_code = expected_status_code)
+
+    ### CASE: response content_type
+    add_test_case(
+        test_object = drs_access_test,
+        case_type = "content_type",
+        case_name = "DRS access response content-type validation",
+        case_description = f"Check if the content-type is {expected_content_type}",
+        response = response,
+        expected_content_type = expected_content_type)
+
+    ### CASE: response schema
+    add_test_case(
+        test_object = drs_access_test,
+        case_type = "response_schema",
+        case_name = "DRS access response schema validation",
+        case_description = f"Validate DRS access response schema when status = {expected_status_code}",
+        response = response,
+        schema_name = schema_dir + schema_file)
+
+    drs_access_test.set_end_time_now()
+
+def add_test_case(test_object, case_type, **kwargs):
+    """
+    Adds a test case to a Test object based on type of the case.
+    """
+    test_case = test_object.add_case()
+    test_case.set_case_name(kwargs['case_name'])
+    test_case.set_case_description(kwargs['case_description'])
+
+    validate_response = ValidateResponse()
+    validate_response.set_case(test_case)
+    validate_response.set_actual_response(kwargs['response'])
+
+    if case_type == 'status_code':
+        validate_response.validate_status_code(kwargs['expected_status_code'])
+    elif case_type == 'content_type':
+        validate_response.validate_content_type(kwargs['expected_content_type'])
+    elif case_type == 'response_schema':
+        validate_response.set_response_schema_file(kwargs['schema_name'])
+        validate_response.validate_response_schema()
+
+    test_case.set_end_time_now()
 
 def main():
     args = Parser.parse_args()
