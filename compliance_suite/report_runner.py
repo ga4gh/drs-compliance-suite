@@ -13,31 +13,40 @@ from ga4gh.testbed.report.status import Status
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
+def get_authentication_config(auth_type):
+    """
+    Returns the authentication information from the respective config file based on the type of authentication.
+    """
+    if auth_type in ("basic","bearer","passport"):
+        with open(os.path.join(CONFIG_DIR, f"config_{auth_type}.json"), "r") as f:
+            return json.load(f)
+
+
+def get_input_drs_objects():
+    """
+    Returns the input DRS objects from the config folder.
+    """
+    with open(os.path.join(CONFIG_DIR, "input_drs_objects.json"), "r") as f:
+        return json.load(f)["drs_objects"]
+
 def report_runner(server_base_url, platform_name, platform_description, auth_type):
 
     # Read input DRS objects from config folder
     # TODO: Add lower and upper limits to input DRS objects
-    with open(CONFIG_DIR+"/input_drs_objects.json", 'r') as file:
-        input_drs = json.load(file)
-    input_drs_objects = input_drs["drs_objects"]
+    input_drs_objects = get_input_drs_objects()
 
     # get authentication information from respective config file based on type of authentication
     headers = {}
+    config = get_authentication_config(auth_type)
     if (auth_type == "basic"):
-        with open(CONFIG_DIR+"/config_"+auth_type+".json", 'r') as file:
-            config = json.load(file)
         username = config["username"]
         password = config["password"]
         b64_encoded_username_password = b64encode(str.encode("{}:{}".format(username, password))).decode("ascii")
         headers = { "Authorization" : "Basic {}".format(b64_encoded_username_password) }
     elif (auth_type == "bearer"):
-        with open(CONFIG_DIR+"/config_"+auth_type+".json", 'r') as file:
-            config = json.load(file)
         bearer_token = config["bearer_token"]
         headers =  { "Authorization" : "Bearer {}".format(bearer_token) }
     elif (auth_type == "passport"):
-        with open(CONFIG_DIR+"/config_"+auth_type+".json", 'r') as file:
-            config = json.load(file)
         drs_object_passport_map = config["drs_object_passport_map"]
 
     # Create a compliance report object
@@ -69,33 +78,37 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     expected_content_type = "application/json"
 
     ### CASE: response status_code
-    add_case_status_code(
+    add_test_case(
         test_object = service_info_test,
-        expected_status_code = expected_status_code,
+        case_type = "status_code",
         case_name = "service-info response status code validation",
         case_description = "check if the response status code is " + expected_status_code,
-        response = response)
+        response = response,
+        expected_status_code = expected_status_code)
 
     ### CASE: response content_type
-    add_case_content_type(
+    add_test_case(
         test_object = service_info_test,
-        expected_content_type = expected_content_type,
+        case_type = "content_type",
         case_name = "service-info response content-type validation",
         case_description = "check if the content-type is " + expected_content_type,
-        response = response)
+        response = response,
+        expected_content_type = expected_content_type)
 
     ### CASE: response schema
-    add_case_response_schema(
+    add_test_case(
         test_object = service_info_test,
-        schema_name = SERVICE_INFO_SCHEMA,
+        case_type = "response_schema",
         case_name = "service-info success response schema validation",
         case_description = "validate service-info response schema when status = " + expected_status_code,
-        response = response)
+        response = response,
+        schema_name = SERVICE_INFO_SCHEMA)
 
+    # TODO : Add a test to check that drs version from service-info == drs_version provided. input params - must provide a drs_version
     # Get the DRS version number from service-info
     # If the version is not available or is not supported by the compliance suite,
     # finalize and return report
-
+    # TODO: response.json() will fail if content-type is not json
     response_json = response.json()
     server_drs_version = None
     if "type" in response_json and "version" in response_json["type"]:
@@ -156,28 +169,31 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
                                         headers = headers)
 
         ### CASE: response status_code
-        add_case_status_code(
+        add_test_case(
             test_object = drs_object_test,
-            expected_status_code = expected_status_code,
+            case_type = "status_code",
             case_name = "drs object response status code validation",
             case_description = "check if the response status code is " + expected_status_code,
-            response = response)
+            response = response,
+            expected_status_code = expected_status_code)
 
         ### CASE: response content_type
-        add_case_content_type(
+        add_test_case(
             test_object = drs_object_test,
-            expected_content_type = expected_content_type,
+            case_type = "content_type",
             case_name = "drs object response content-type validation",
             case_description = "check if the content-type is " + expected_content_type,
-            response = response)
+            response = response,
+            expected_content_type = expected_content_type)
 
         ### CASE: response schema
-        add_case_response_schema(
+        add_test_case(
             test_object = drs_object_test,
-            schema_name = drs_version_schema_dir + DRS_OBJECT_SCHEMA,
+            case_type = "response_schema",
             case_name = "drs object response schema validation",
             case_description = "validate drs object response schema when status = " + expected_status_code,
-            response = response)
+            response = response,
+            schema_name = drs_version_schema_dir + DRS_OBJECT_SCHEMA)
 
         drs_object_test.set_end_time_now()
     drs_object_phase.set_end_time_now()
@@ -218,28 +234,31 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
                                         headers = headers)
 
         ### CASE: response status_code
-        add_case_status_code(
+        add_test_case(
             test_object = drs_access_test,
-            expected_status_code = expected_status_code,
+            case_type = "status_code",
             case_name = "drs access response status code validation",
             case_description = "check if the response status code is " + expected_status_code,
-            response = response)
+            response = response,
+            expected_status_code = expected_status_code)
 
         ### CASE: response content_type
-        add_case_content_type(
+        add_test_case(
             test_object = drs_access_test,
-            expected_content_type = expected_content_type,
+            case_type = "content_type",
             case_name = "drs access response content-type validation",
             case_description = "check if the content-type is " + expected_content_type,
-            response = response)
+            response = response,
+            expected_content_type = expected_content_type)
 
         ### CASE: response schema
-        add_case_response_schema(
+        add_test_case(
             test_object = drs_access_test,
-            schema_name = drs_version_schema_dir + DRS_ACCESS_SCHEMA,
+            case_type = "response_schema",
             case_name = "drs access response schema validation",
             case_description = "validate drs access response schema when status = " + expected_status_code,
-            response = response)
+            response = response,
+            schema_name = drs_version_schema_dir + DRS_ACCESS_SCHEMA)
 
         drs_access_test.set_end_time_now()
     drs_access_phase.set_end_time_now()
@@ -247,42 +266,27 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     report_object.finalize()
     return report_object.to_json()
 
-def add_case_status_code(test_object,expected_status_code, case_name, case_description, response):
-    case_response_status = test_object.add_case()
-    case_response_status.set_case_name(case_name)
-    case_response_status.set_case_description(case_description)
+def add_test_case(test_object, case_type, **kwargs):
+    """
+    Adds a test case to a Test object based on type of the case.
+    """
+    test_case = test_object.add_case()
+    test_case.set_case_name(kwargs['case_name'])
+    test_case.set_case_description(kwargs['case_description'])
 
-    validate_response_status = ValidateResponse()
-    validate_response_status.set_case(case_response_status)
-    validate_response_status.set_actual_response(response)
-    validate_response_status.validate_status_code(expected_status_code)
+    validate_response = ValidateResponse()
+    validate_response.set_case(test_case)
+    validate_response.set_actual_response(kwargs['response'])
 
-    case_response_status.set_end_time_now()
+    if case_type == 'status_code':
+        validate_response.validate_status_code(kwargs['expected_status_code'])
+    elif case_type == 'content_type':
+        validate_response.validate_content_type(kwargs['expected_content_type'])
+    elif case_type == 'response_schema':
+        validate_response.set_response_schema_file(kwargs['schema_name'])
+        validate_response.validate_response_schema()
 
-def add_case_content_type(test_object,expected_content_type, case_name, case_description, response):
-    case_response_content_type = test_object.add_case()
-    case_response_content_type.set_case_name(case_name)
-    case_response_content_type.set_case_description(case_description)
-
-    validate_response_content_type = ValidateResponse()
-    validate_response_content_type.set_case(case_response_content_type)
-    validate_response_content_type.set_actual_response(response)
-    validate_response_content_type.validate_content_type(expected_content_type)
-
-    case_response_content_type.set_end_time_now()
-
-def add_case_response_schema(test_object,schema_name, case_name, case_description, response):
-    case_response_schema = test_object.add_case()
-    case_response_schema.set_case_name(case_name)
-    case_response_schema.set_case_description(case_description)
-
-    validate_response_schema = ValidateResponse()
-    validate_response_schema.set_case(case_response_schema)
-    validate_response_schema.set_actual_response(response)
-    validate_response_schema.set_response_schema_file(schema_name)
-    validate_response_schema.validate_response_schema()
-
-    case_response_schema.set_end_time_now()
+    test_case.set_end_time_now()
 
 def main():
     args = Parser.parse_args()
