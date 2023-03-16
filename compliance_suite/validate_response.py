@@ -26,54 +26,58 @@ class ValidateResponse():
         self.case = case
 
     def get_schema(self, schema_file_name):
-        """This function loads the given schema available"""
+        """
+        Loads the given schema if available,
+        Throws an error if the file does not exist
+        """
+        if not os.path.exists(schema_file_name):
+            raise ValueError(f"Schema file '{schema_file_name}' does not exist")
         with open(schema_file_name, 'r') as file:
             schema = json.load(file)
-        # TODO: throw exception -> fail case if schema file does not exist or add unittest to make sure all the schema files are available
         return schema
 
     def validate_response_schema(self):
-        if self.case.get_status() != Status.SKIP:
-            expected_schema_file_path = SCHEMA_DIR + "/" + self.response_schema_file
-            expected_schema = self.get_schema(expected_schema_file_path)
-            absolute_schema_file_path = os.path.dirname(os.path.abspath(expected_schema_file_path))
-            reference_resolver = jsonschema.RefResolver(base_uri = "file://"+absolute_schema_file_path+"/", referrer = None)
-            try:
-                validate(instance = self.actual_response.json(),resolver = reference_resolver,schema=expected_schema)
-                self.case.set_message("Schema Validation Successful")
-                self.case.set_status_pass()
-            except Exception as e:
-                self.case.set_message(e.message if hasattr(e,"message") else str(e))
-                self.case.add_log_message("Stack Trace: "+str(e))
-                self.case.set_status_fail()
-        else:
-            pass
-            # make sure if skip, the reason is added to message and/ log_message
+        if self.case.get_status() == Status.SKIP:
+            self.case.set_end_time_now()
+            return
+        expected_schema_file_path = os.path.join(SCHEMA_DIR, self.response_schema_file)
+        expected_schema = self.get_schema(expected_schema_file_path)
+        absolute_schema_file_path = os.path.dirname(os.path.abspath(expected_schema_file_path))
+        reference_resolver = jsonschema.RefResolver(base_uri=f"file://{absolute_schema_file_path}/", referrer=None)
+        try:
+            validate(instance=self.actual_response.json(), resolver=reference_resolver, schema=expected_schema)
+            self.case.set_message("Schema Validation Successful")
+            self.case.set_status_pass()
+        except Exception as e:
+            self.case.set_message(e.message if hasattr(e,"message") else str(e))
+            self.case.add_log_message(f"Stack Trace: {str(e)}")
+            self.case.set_status_fail()
         self.case.set_end_time_now()
-        return
 
     def validate_status_code(self, expected_status_code):
-        if self.case.get_status() != Status.SKIP:
-            if str(self.actual_response.status_code) == expected_status_code:
-                self.case.set_status_pass()
-            else:
-                self.case.set_status_fail()
-            self.case.set_message("response status code = " + str(self.actual_response.status_code))
+        if self.case.get_status() == Status.SKIP:
+            self.case.set_end_time_now()
+            return
+        elif str(self.actual_response.status_code) == expected_status_code:
+            self.case.set_message(f"Response status code is {self.actual_response.status_code}")
+            self.case.set_status_pass()
         else:
-            # status = skip, message = reason
-            pass
+            self.case.set_message(f"Expected status code {expected_status_code}, but got {self.actual_response.status_code}")
+            self.case.set_status_fail()
         self.case.set_end_time_now()
-        return
 
     def validate_content_type(self, expected_content_type):
-        if self.case.get_status() != Status.SKIP:
-            if self.actual_response.headers["Content-Type"] == expected_content_type:
-                self.case.set_status_pass()
-                self.case.set_message("content type = " + expected_content_type)
-            else:
-                self.case.set_status_fail()
-                self.case.set_message("content type = " + self.actual_response.headers["Content-Type"])
+        if self.case.get_status() == Status.SKIP:
+            self.case.set_end_time_now()
+            return
+        actual_content_type = self.actual_response.headers.get("Content-Type")
+        if actual_content_type is None:
+            self.case.set_status_fail()
+            self.case.set_message("Missing Content-Type header")
+        elif actual_content_type.startswith(expected_content_type):
+            self.case.set_status_pass()
+            self.case.set_message("Content-Type matches expected type")
         else:
-            pass
+            self.case.set_status_fail()
+            self.case.set_message(f"Expected Content-Type {expected_content_type}, but got Unexpected Content-Type: {actual_content_type}")
         self.case.set_end_time_now()
-        return
