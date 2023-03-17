@@ -110,9 +110,6 @@ class Parser:
 		define shell arguments
 		server_base_url : the server url of DRS implementation that will be tested for compliance with DRS Spec
 		"""
-
-        # TODO: get drs versions!!!
-
         parser = argparse.ArgumentParser(
             description="script to access DRS objects using GA4GH DRS API")
         parser.add_argument("--server_base_url",
