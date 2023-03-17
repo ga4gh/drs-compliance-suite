@@ -6,7 +6,6 @@ from base64 import b64encode
 from compliance_suite.helper import Parser
 import os
 from compliance_suite.constants import *
-from supported_drs_versions import SUPPORTED_DRS_VERSIONS
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
@@ -64,6 +63,14 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
     # TODO : Add a test case to check that drs version from service-info == drs_version provided.
     schema_dir = "v" + drs_version + "/"
+
+    # TODO: extend support to DRS v1.3.0 -
+    #  1. make a json map of endpoints per each DRS version
+    #  using which phases are created and added to the report object
+    #  2. schema_dir should take care of pulling the right schema for validation
+    #  3. Add the version to supported_drs_versions
+    #  4. add any version specific test cases
+
 
     ### PHASE: /objects/{object_id}
     drs_object_phase = report_object.add_phase()
