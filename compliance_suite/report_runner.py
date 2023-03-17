@@ -26,6 +26,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     # get authentication information from respective config file based on type of authentication
     headers = {}
     config = get_authentication_config(auth_type)
+    drs_object_passport_map = {}
     if (auth_type == "basic"):
         username = config["username"]
         password = config["password"]
@@ -55,6 +56,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
         service_info_phase,
         server_base_url,
         headers,
+        auth_type,
         schema_dir = "",
         schema_file = SERVICE_INFO_SCHEMA,
         expected_status_code = "200",
@@ -67,7 +69,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     # TODO: remove version hardcoding
     drs_version_schema_dir = "v" + "1.2.0" + "/"
 
-    ### PHASE: /object/{drs_id}
+    ### PHASE: /objects/{object_id}
     drs_object_phase = report_object.add_phase()
     drs_object_phase.set_phase_name("drs object info endpoint")
     drs_object_phase.set_phase_description("run all the tests for drs object info endpoint")
@@ -81,7 +83,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
             server_base_url,
             headers,
             auth_type,
-            drs_object_passport_map = {},
+            drs_object_passport_map = drs_object_passport_map,
             drs_object_id = this_drs_object["drs_id"],
             schema_dir = drs_version_schema_dir,
             schema_file = DRS_OBJECT_SCHEMA,
@@ -93,7 +95,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
     drs_object_phase.set_end_time_now()
 
-    # PHASE: /objects/{drs_id}/access/{access_id}
+    # PHASE: /objects/{object_id}/access/{access_id}
     drs_access_phase = report_object.add_phase()
     drs_access_phase.set_phase_name("drs access endpoint")
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
@@ -104,7 +106,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
             server_base_url,
             headers,
             auth_type,
-            drs_object_passport_map = {},
+            drs_object_passport_map = drs_object_passport_map,
             drs_object_id = this_drs_object["drs_id"],
             drs_access_id = this_drs_object["access_id"],
             schema_dir = drs_version_schema_dir,
@@ -136,6 +138,7 @@ def test_service_info(
         service_info_phase,
         server_base_url,
         headers,
+        auth_type,
         schema_dir,
         schema_file,
         expected_status_code,
@@ -145,12 +148,11 @@ def test_service_info(
     service_info_test.set_test_description("validate service-info status code, content-type "
                                        "and response schemas")
 
-    SERVICE_INFO_URL = "/service-info"
-    response = requests.request(
-        method = "GET",
-        url = server_base_url + SERVICE_INFO_URL,
-        headers = headers
-    )
+    response = send_request(
+        server_base_url,
+        SERVICE_INFO_URL,
+        headers,
+        auth_type)
 
     add_common_test_cases(
         test_object = service_info_test,
@@ -179,15 +181,13 @@ def test_drs_object_info(
     drs_object_test.set_test_name(f"run test cases on the drs object info endpoint for drs id = {drs_object_id}")
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
 
-    # TODO: refactor this!!!
-    if auth_type == "passport":
-        drs_object_passport = drs_object_passport_map[drs_object_id]
-        request_body = {"passports":[drs_object_passport]}
-        response = requests.post(server_base_url + DRS_OBJECT_INFO_URL + drs_object_id,
-                                 headers=headers, json=request_body)
-    else:
-        response = requests.get(server_base_url + DRS_OBJECT_INFO_URL + drs_object_id,
-                                headers=headers)
+    response = send_request(
+        server_base_url,
+        DRS_OBJECT_INFO_URL + drs_object_id,
+        headers,
+        auth_type,
+        drs_object_passport_map = drs_object_passport_map,
+        drs_object_id = drs_object_id)
 
     add_common_test_cases(
         test_object = drs_object_test,
@@ -218,18 +218,13 @@ def test_drs_object_access(
                                   f"and access id = {drs_access_id}")
     drs_access_test.set_test_description("validate drs access status code, content-type and response schemas")
 
-    if auth_type=="passport":
-        drs_object_passport = drs_object_passport_map[drs_object_id]
-        request_body = {"passports":[drs_object_passport]}
-        response = requests.request(
-            method = "POST",
-            url = server_base_url + DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
-            headers = headers,
-            json = request_body)
-    else:
-        response = requests.request(method = "GET",
-                                    url = server_base_url + DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
-                                    headers = headers)
+    response = send_request(
+        server_base_url,
+        DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
+        headers,
+        auth_type,
+        drs_object_passport_map = drs_object_passport_map,
+        drs_object_id = drs_object_id)
 
     add_common_test_cases(
         test_object = drs_access_test,
@@ -241,6 +236,35 @@ def test_drs_object_access(
         schema_file = schema_file)
 
     drs_access_test.set_end_time_now()
+
+def send_request(
+        server_base_url,
+        endpoint_url,
+        headers,
+        auth_type,
+        **kwargs):
+
+    request_body = {}
+    if auth_type == "passport" and endpoint_url != SERVICE_INFO_URL:
+        # endpoints that allow auth_type: "passport"
+        # 1. DRS Objects: /objects/{object_id}
+        # 2. DRS Object Access: /objects/{object_id}/access/{access_id}
+        drs_object_passport = kwargs["drs_object_passport_map"][kwargs["drs_object_id"]]
+        request_body = {"passports": [drs_object_passport]}
+        http_method = "POST"
+    elif auth_type in ("basic", "bearer", "none") or endpoint_url == SERVICE_INFO_URL:
+        # endpoint Service Info: /service-info allows auth_type: "basic", "bearer" or "none"
+        http_method = "GET"
+    else:
+        raise ValueError("Invalid auth_type")
+
+    response = requests.request(
+        method = http_method,
+        url = server_base_url + endpoint_url,
+        json = request_body,
+        headers = headers)
+
+    return response
 
 def add_common_test_cases(
         test_object,
