@@ -11,13 +11,11 @@ from supported_drs_versions import SUPPORTED_DRS_VERSIONS
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
-
-# TODO: 1. endpoint calls into a function
 # TODO: 2. get version from params and confirm its in the list of supported versions.
 #  parse args & setup.py should get the list of supported version from one source
 
 
-def report_runner(server_base_url, platform_name, platform_description, auth_type):
+def report_runner(server_base_url, platform_name, platform_description, auth_type, drs_version):
 
     # Read input DRS objects from config folder
     # TODO: Add lower and upper limits to input DRS objects
@@ -65,9 +63,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     service_info_phase.set_end_time_now()
 
     # TODO : Add a test case to check that drs version from service-info == drs_version provided.
-    # input params - must provide a drs_version
-    # TODO: remove version hardcoding
-    drs_version_schema_dir = "v" + "1.2.0" + "/"
+    schema_dir = "v" + drs_version + "/"
 
     ### PHASE: /objects/{object_id}
     drs_object_phase = report_object.add_phase()
@@ -85,7 +81,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
             auth_type,
             drs_object_passport_map = drs_object_passport_map,
             drs_object_id = this_drs_object["drs_id"],
-            schema_dir = drs_version_schema_dir,
+            schema_dir = schema_dir,
             schema_file = DRS_OBJECT_SCHEMA,
             expected_status_code = "200",
             expected_content_type = "application/json")
@@ -109,7 +105,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
             drs_object_passport_map = drs_object_passport_map,
             drs_object_id = this_drs_object["drs_id"],
             drs_access_id = this_drs_object["access_id"],
-            schema_dir = drs_version_schema_dir,
+            schema_dir = schema_dir,
             schema_file = DRS_ACCESS_SCHEMA,
             expected_status_code = "200",
             expected_content_type = "application/json")
@@ -337,7 +333,8 @@ def main():
     output_report = report_runner(server_base_url = args.server_base_url,
                                 platform_name = args.platform_name,
                                 platform_description = args.platform_description,
-                                auth_type = args.auth_type)
+                                auth_type = args.auth_type,
+                                drs_version = args.drs_version)
 
     output_report_json = json.loads(output_report)
 
