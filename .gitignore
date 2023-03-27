@@ -150,3 +150,6 @@ datastore/*
 **/*.stdout.txt
 cwl-test-drs-compliance-report.json
 wdl-test-drs-compliance-report.json
+
+# temp_report file
+compliance_suite/web/temp_report.json

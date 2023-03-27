@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Compliance Report</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<div class = "container">
+<div class="two alt-two">
+    <h1>Compliance Report
+        <span> GA4GH Data Repository Service </span>
+    </h1>
+    <hr>
+    <br>
+</div>
+
+
+<p><strong>Schema Name:</strong><normal> {{ report.schema_name }}</normal></p>
+    <p><strong>Schema Version:</strong><normal> {{ report.schema_version }}</normal></p>
+    <p><strong>Testbed Name:</strong><normal> {{ report.testbed_name }}</normal></p>
+    <p><strong>Testbed Version:</strong><normal> {{ report.testbed_version }}</normal></p>
+    <p><strong>Testbed Description:</strong><normal> {{ report.testbed_description }}</normal></p>
+    <p><strong>Platform Name:</strong><normal> {{ report.platform_name }}</normal></p>
+    <p><strong>Platform Description:</strong><normal> {{ report.platform_description }}</normal></p>
+    <p><strong>Server Base URL:</strong><normal> {{ report.input_parameters.server_base_url }}</normal></p>
+    <p><strong>Start Time:</strong><normal> {{ report.start_time }}</normal></p>
+    <p><strong>End Time:</strong><normal> {{ report.end_time }}</normal></p>
+    <p><strong>Status:</strong>
+        {% if report.status == "PASS" %}
+            <span class="text-pass strong">{{ report.status }}</span>
+        {% elif report.status == "FAIL" %}
+            <span class="text-fail strong">{{ report.status }}</span>
+        {% else %}
+            <span class="text-warn strong">{{ report.status }}</span>
+        {% endif %}
+    </p>
+    <p><strong>Test Case Summary:</strong>
+        <table class="table-summary">
+            <tbody>
+                {% for key, value in report.summary.items() %}
+                    <tr>
+                    <td class="td-summary">{{ key }}</td>
+                    <td class="td-summary">{{ value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </p>
+    <p><strong>Phases:</strong></p>
+        {% for phase in report.phases %}
+            <button class="collapsible"><phasetitle>{{ phase.phase_name }}</phasetitle></button>
+            <div class="content">
+                </br>
+                {% for test in phase.tests %}
+                    <p><strong>Test:</strong><normal> {{ test.test_name }}</normal></p>
+                    <table class="case-table">
+                        <tr>
+                            <th class="head-case strong">Test Case</th>
+                            <th class="head-result strong">Result</th>
+                        </tr>
+                        <tbody>
+                            {% for case in test.cases %}
+                                <tr>
+                                <td class="normal">{{ case.case_description }}</td>
+                                {% if case.status == "PASS" %}
+                                    <td class="text-pass strong">{{ case.status }}</td>
+                                {% elif case.status == "FAIL" %}
+                                    <td class="text-fail strong">{{ case.status }}</td>
+                                {% else %}
+                                    <td class="text-warn strong">{{ case.status }}</td>
+                                {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+               {% endfor %}
+            </div>
+            </br>
+        {% endfor %}
+
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

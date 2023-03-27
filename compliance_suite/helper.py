@@ -146,5 +146,14 @@ class Parser:
                             help="DRS version implemented by the DRS server",
                             type=str,
                             choices=SUPPORTED_DRS_VERSIONS)
+        parser.add_argument("--serve",
+                            required=False,
+                            help="If this flag is set, the output report is served as an html webpage",
+                            action='store_true')
+        parser.add_argument("--serve_port",
+                            required=False,
+                            type=int,
+                            help="The port where the output report html is deployed",
+                            default=57568)
         args = parser.parse_args()
         return (args)

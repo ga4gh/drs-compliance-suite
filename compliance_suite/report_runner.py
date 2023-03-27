@@ -6,6 +6,7 @@ from base64 import b64encode
 from compliance_suite.helper import Parser
 import os
 from compliance_suite.constants import *
+from compliance_suite.report_server import start_mock_server
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
@@ -40,10 +41,11 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     report_object.set_testbed_description(TESTBED_DESCRIPTION)
     report_object.set_platform_name(platform_name)
     report_object.set_platform_description(platform_description)
+    report_object.add_input_parameter("server_base_url",server_base_url)
 
     ### PHASE: /service-info
     service_info_phase = report_object.add_phase()
-    service_info_phase.set_phase_name("service info endpoint")
+    service_info_phase.set_phase_name("service info")
     service_info_phase.set_phase_description("run all the tests for service_info endpoint")
 
     ### TEST: GET service-info
@@ -72,7 +74,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
     ### PHASE: /objects/{object_id}
     drs_object_phase = report_object.add_phase()
-    drs_object_phase.set_phase_name("drs object info endpoint")
+    drs_object_phase.set_phase_name("drs object info")
     drs_object_phase.set_phase_description("run all the tests for drs object info endpoint")
 
     for this_drs_object in input_drs_objects:
@@ -98,7 +100,7 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
 
     # PHASE: /objects/{object_id}/access/{access_id}
     drs_access_phase = report_object.add_phase()
-    drs_access_phase.set_phase_name("drs access endpoint")
+    drs_access_phase.set_phase_name("drs object access")
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
 
     for this_drs_object in input_drs_objects:
@@ -146,7 +148,7 @@ def test_service_info(
         expected_content_type):
 
     service_info_test = service_info_phase.add_test()
-    service_info_test.set_test_name("service-info")
+    service_info_test.set_test_name("Run test cases on the service-info endpoint")
     service_info_test.set_test_description("validate service-info status code, content-type "
                                        "and response schemas")
 
@@ -180,7 +182,7 @@ def test_drs_object_info(
         expected_content_type):
 
     drs_object_test = drs_object_phase.add_test()
-    drs_object_test.set_test_name(f"run test cases on the drs object info endpoint for drs id = {drs_object_id}")
+    drs_object_test.set_test_name(f"Run test cases on the drs object info endpoint for drs id = {drs_object_id}")
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
 
     response = send_request(
@@ -216,7 +218,7 @@ def test_drs_object_access(
         expected_content_type):
 
     drs_access_test = drs_access_phase.add_test()
-    drs_access_test.set_test_name(f"run test cases on the drs access endpoint for drs id = {drs_object_id} "
+    drs_access_test.set_test_name(f"Run test cases on the drs access endpoint for drs id = {drs_object_id} "
                                   f"and access id = {drs_access_id}")
     drs_access_test.set_test_description("validate drs access status code, content-type and response schemas")
 
@@ -350,6 +352,11 @@ def main():
     # write output report to file
     with open(args.report_path, 'w', encoding='utf-8') as f:
         json.dump(output_report_json, f, ensure_ascii=False, indent=4)
+
+    if (args.serve):
+        with open("./compliance_suite/web/temp_report.json", 'w', encoding='utf-8') as f:
+            json.dump(output_report_json, f, ensure_ascii=False, indent=4)
+        start_mock_server(args.serve_port)
 
 if __name__=="__main__":
     main()

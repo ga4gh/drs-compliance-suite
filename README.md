@@ -51,6 +51,8 @@ python compliance_suite/report_runner.py --server_base_url "http://localhost:808
   * "passport"
 * **--drs_version** : version of DRS implemented by the DRS server. It can be one of the following -
   * "1.2.0"
+* **--serve** : If this flag is set, the output report is served as an html webpage.
+* **--serve_port** : The port where the output report html is deployed when serve option is used. Default value = 57568 
 
 Depending on the auth type selected, the appropriate credentials must be provided by the end user
 * Example credentials may be found for the associated auth type
