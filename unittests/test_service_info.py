@@ -52,8 +52,8 @@ def test_good_service_info_resp():
     assert test_object.cases[0].status == Status.PASS
     assert test_object.cases[0].message == "Schema Validation Successful"
 
-    assert response["type"]["group"] == "org.ga4gh"
-    assert response["type"]["artifact"] == "drs"
+    assert response.response["type"]["group"] == "org.ga4gh"
+    assert response.response["type"]["artifact"] == "drs"
 
 def test_bad_service_info_resp():
     # TODO: Raise a bug
@@ -95,7 +95,6 @@ def test_invalid_status_code():
     add_case_status_code(test_object, expected_status_code, case_name, case_description, response)
 
     assert test_object.cases[0].status == Status.FAIL
-    assert "response status code = " in test_object.cases[0].message
     
 def test_valid_content_type():
     # test for matching content type

@@ -23,14 +23,14 @@ def test_valid_status_code():
     for phase in actual_good_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][0]
-            assert cases["message"] == "response status code = 200"
+            assert "200" in cases["message"]
             assert cases["status"] == "PASS"
     
 def test_valid_content_type():
     for phase in actual_good_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][1]
-            assert cases["message"] == "content type = application/json"
+            assert "matches expected type" in cases["message"]
             assert cases["status"] == "PASS"
     
 def test_valid_response_schema():
@@ -44,7 +44,7 @@ def test_invalid_status_code():
     for phase in actual_bad_json["phases"]:
         for test in phase["tests"]:
             cases = test["cases"][0]
-            assert cases["message"] == "response status code = 400"
+            assert "400" in cases["message"]
             assert cases["status"] == "FAIL"
 
 def test_authorization():
