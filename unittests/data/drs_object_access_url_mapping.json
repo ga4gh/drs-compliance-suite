@@ -6,19 +6,19 @@
         }
     },
     "0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa": {
-        "accessId": "087c70d5-64ac-4ec8-ad32-46e68f3480f5",
+        "accessId": "db070dcb-15cd-4a28-aa84-c7b3caa4f43a",
         "url": {
             "url": "http://localhost:4500/ga4gh/drs/v1/stream/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/087c70d5-64ac-4ec8-ad32-46e68f3480f5"
         }
     },
     "1af6b862-7fc8-411a-86c5-d8e280e5b77a": {
-        "accessId": "753e47fd-1a68-43c3-90c4-05b11db7dee7",
+        "accessId": "73fec6d9-3de7-4c92-8ca4-96d6dafaace9",
         "url": {
             "url": "http://localhost:4500/ga4gh/drs/v1/stream/1af6b862-7fc8-411a-86c5-d8e280e5b77a/753e47fd-1a68-43c3-90c4-05b11db7dee7"
         }
     },
     "41898242-62a9-4129-9a2c-5a4e8f5f0afb": {
-        "accessId": "ac4e572a-be54-4343-ad46-0b1ab8ebe326",
+        "accessId": "9488e423-d243-4d08-807c-d35be1b144f1",
         "url": {
             "url": "http://localhost:4500/ga4gh/drs/v1/stream/41898242-62a9-4129-9a2c-5a4e8f5f0afb/ac4e572a-be54-4343-ad46-0b1ab8ebe326"
         }

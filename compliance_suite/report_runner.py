@@ -1,5 +1,6 @@
 from ga4gh.testbed.report.report import Report
 from compliance_suite.validate_response import ValidateResponse
+from compliance_suite.validate_drs_object_response import ValidateDRSObjectResponse
 import json
 import requests
 from base64 import b64encode
@@ -10,6 +11,8 @@ from compliance_suite.report_server import start_mock_server
 
 CONFIG_DIR = os.path.join(os.path.dirname(__file__), 'config')
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
+
+drs_objects_access_id_map = {}
 
 def report_runner(server_base_url, platform_name, platform_description, auth_type, drs_version):
     """
@@ -104,18 +107,19 @@ def report_runner(server_base_url, platform_name, platform_description, auth_typ
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
 
     for this_drs_object in input_drs_objects:
-        test_drs_object_access(
-            drs_access_phase,
-            server_base_url,
-            headers,
-            auth_type,
-            drs_object_passport_map = drs_object_passport_map,
-            drs_object_id = this_drs_object["drs_id"],
-            drs_access_id = this_drs_object["access_id"],
-            schema_dir = schema_dir,
-            schema_file = DRS_ACCESS_SCHEMA,
-            expected_status_code = "200",
-            expected_content_type = "application/json")
+        for this_access_id in drs_objects_access_id_map[this_drs_object["drs_id"]]:
+            test_drs_object_access(
+                drs_access_phase,
+                server_base_url,
+                headers,
+                auth_type,
+                drs_object_passport_map = drs_object_passport_map,
+                drs_object_id = this_drs_object["drs_id"],
+                drs_access_id = this_access_id,
+                schema_dir = schema_dir,
+                schema_file = DRS_ACCESS_SCHEMA,
+                expected_status_code = "200",
+                expected_content_type = "application/json")
 
     drs_access_phase.set_end_time_now()
     report_object.set_end_time_now()
@@ -181,9 +185,11 @@ def test_drs_object_info(
         expected_status_code,
         expected_content_type):
 
+    global drs_objects_access_id_map
     drs_object_test = drs_object_phase.add_test()
     drs_object_test.set_test_name(f"Run test cases on the drs object info endpoint for drs id = {drs_object_id}")
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
+    endpoint_name = "DRS Object Info"
 
     response = send_request(
         server_base_url,
@@ -195,12 +201,29 @@ def test_drs_object_info(
 
     add_common_test_cases(
         test_object = drs_object_test,
-        endpoint_name = "DRS Object Info",
+        endpoint_name = endpoint_name,
         response = response,
         expected_status_code = expected_status_code,
         expected_content_type = expected_content_type,
         schema_dir = schema_dir,
         schema_file = schema_file)
+
+    add_access_methods_test_case(
+        test_object = drs_object_test,
+        case_type = "has_access_methods",
+        case_description = f"Validate that {endpoint_name} response has "
+                           f"access_methods field provided and that it is non-empty",
+        endpoint_name = endpoint_name,
+        response = response)
+
+    drs_objects_access_id_map[drs_object_id] = add_access_methods_test_case(
+        test_object = drs_object_test,
+        case_type = "has_access_info",
+        case_description =f"Validate that each access_method in the access_methods field "
+                          f"of the {endpoint_name} response has atleast one of 'access_url'"
+                          f"or 'access_id' provided",
+        endpoint_name = endpoint_name,
+        response = response)
 
     drs_object_test.set_end_time_now()
 
@@ -287,7 +310,7 @@ def add_common_test_cases(
     """
 
     ### CASE: response status_code
-    add_test_case(
+    add_test_case_common(
         test_object = test_object,
         case_type = "status_code",
         case_name = f"{endpoint_name} response status code validation",
@@ -296,7 +319,7 @@ def add_common_test_cases(
         expected_status_code = expected_status_code)
 
     ### CASE: response content_type
-    add_test_case(
+    add_test_case_common(
         test_object = test_object,
         case_type = "content_type",
         case_name = f"{endpoint_name} response content-type validation",
@@ -305,17 +328,17 @@ def add_common_test_cases(
         expected_content_type = expected_content_type)
 
     ### CASE: response schema
-    add_test_case(
+    add_test_case_common(
         test_object = test_object,
         case_type = "response_schema",
         case_name = f"{endpoint_name} response schema validation",
-        case_description = f"Validate {endpoint_name}  response schema when status = {expected_status_code}",
+        case_description = f"Validate {endpoint_name} response schema when status = {expected_status_code}",
         response = response,
         schema_name = os.path.join(schema_dir, schema_file))
 
-def add_test_case(test_object, case_type, **kwargs):
+def add_test_case_common(test_object, case_type, **kwargs):
     """
-    Adds a test case to a Test object based on type of the case.
+    Adds a common test case to a Test object based on type of the case - status_code/ content_type/ response_schema.
     """
     test_case = test_object.add_case()
     test_case.set_case_name(kwargs['case_name'])
@@ -332,8 +355,30 @@ def add_test_case(test_object, case_type, **kwargs):
     elif case_type == 'response_schema':
         validate_response.set_response_schema_file(kwargs['schema_name'])
         validate_response.validate_response_schema()
-
     test_case.set_end_time_now()
+
+def add_access_methods_test_case(test_object, case_type, case_description, endpoint_name, response):
+    """
+    Adds a test case to a Test object to check if access information is present in the drs_object response.
+    DRS v1.2.0 Spec - `access_methods`:
+     - Required for single blobs; optional for bundles.
+     - At least one of `access_url` and `access_id` must be provided.
+    """
+    test_case = test_object.add_case()
+    test_case.set_case_name(f"{endpoint_name} has access information")
+    test_case.set_case_description(case_description)
+
+    validate_drs_response = ValidateDRSObjectResponse()
+    validate_drs_response.set_case(test_case)
+    validate_drs_response.set_actual_response(response)
+
+    access_id_list = None
+    if case_type == "has_access_methods":
+        validate_drs_response.validate_has_access_methods()
+    elif case_type == "has_access_info":
+        access_id_list = validate_drs_response.validate_has_access_info()
+    test_case.set_end_time_now()
+    return access_id_list
 
 def main():
     args = Parser.parse_args()

@@ -101,11 +101,8 @@ python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0
 python unittests/good_mock_server_v1.3.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8086"
 python unittests/bad_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8088"
 ```
-###### Run the tests
-```
-py.test -v
-```
-###### Check the code coverage of the tests
+
+###### Running the tests with code coverage
 ```
 pytest --cov=compliance_suite unittests/ 
 ```
