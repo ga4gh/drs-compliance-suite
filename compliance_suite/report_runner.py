@@ -231,6 +231,23 @@ def test_drs_object_info(
             case_description = f"Validate DRS bundle when expand = True",
             response = response,
             schema_name = os.path.join(schema_dir, 'drs_bundle.json'))
+            
+    add_access_methods_test_case(
+        test_object = drs_object_test,
+        case_type = "has_access_methods",
+        case_description = f"Validate that {endpoint_name} response has "
+                           f"access_methods field provided and that it is non-empty",
+        endpoint_name = endpoint_name,
+        response = response)
+
+    drs_objects_access_id_map[drs_object_id] = add_access_methods_test_case(
+        test_object = drs_object_test,
+        case_type = "has_access_info",
+        case_description =f"Validate that each access_method in the access_methods field "
+                          f"of the {endpoint_name} response has atleast one of 'access_url'"
+                          f"or 'access_id' provided",
+        endpoint_name = endpoint_name,
+        response = response)
 
     add_access_methods_test_case(
         test_object = drs_object_test,
@@ -362,7 +379,7 @@ def add_common_test_cases(
         test_object = test_object,
         case_type = "response_schema",
         case_name = f"{endpoint_name} response schema validation",
-        case_description = f"Validate {endpoint_name}  response schema when status = {expected_status_code}",
+        case_description = f"Validate {endpoint_name} response schema when status = {expected_status_code}",
         response = response,
         schema_name = os.path.join(schema_dir, schema_file))
 
