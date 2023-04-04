@@ -10,12 +10,6 @@ from unittests.resources.expected_drs_objects import *
 schema_name = "v1.2.0/drs_object.json"
 test_description = "testing drs-object"
 
-# spec has required fields
-# unittest tests if cs is testing correctly
-# check validate schema code runs bad drs object, expect a fail or error from cs
-
-# import drs_object.json
-
 def new_test_object(test_name, test_desc):
     test_obj = Test()
     test_obj.set_test_name(test_name)
@@ -35,9 +29,6 @@ def test_valid_drs_object():
     assert test_object.cases[0].status == Status.PASS
 
 def test_invalid_id():
-
-    # test for missing or not string drs_id field
-    # expect status == "FAIL"
 
     test_object = new_test_object("test_invalid_id", test_description)
     case_name = "test invalid id"
