@@ -16,6 +16,8 @@ jobs:
 
     - run: pip install -r requirements.txt # download pip dependencies
 
+    - run: echo $PYTHONPATH
+
     - name: Running Tests
       run: "pytest --cov=compliance_suite unittests/"
 
