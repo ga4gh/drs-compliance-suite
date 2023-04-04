@@ -19,7 +19,7 @@ jobs:
     - run: echo $PYTHONPATH
 
     - name: Running Tests
-      run: "pytest --cov=compliance_suite unittests/"
+      run: "python -m pytest unittests/ -v"
 
     # FOR FUTURE PR: CODE TEST COVERAGE
     # - name: After Success Submitting Code Coverage
