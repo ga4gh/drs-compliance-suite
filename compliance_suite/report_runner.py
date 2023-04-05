@@ -224,7 +224,7 @@ def test_drs_object_info(
     # Skip test if contents field is not available
     if is_bundle:
         ### CASE: response expand bundle
-        add_test_case(
+        add_test_case_common(
             test_object = drs_object_test,
             case_type = "expand_bundle",
             case_name = "DRS Access expand bundle validation",
