@@ -81,12 +81,12 @@ def get_bundle_object(drs_id, expand):
                         for children in bundles[drs_id]:
                             bundle = get_bundle_object(children, expand)
                             drs_object = {
-                                #"name": "",
+                                "name": "",
                                 "id": "",
                                 "drs_uri": [],
                                 "contents": ""
                             }
-                            #drs_object["name"] = bundle["name"]
+                            drs_object["name"] = bundle["name"]
                             drs_object["id"] = bundle["id"]
                             drs_object["drs_uri"] = [] 
                             if bundle["contents"] and expand == True:
