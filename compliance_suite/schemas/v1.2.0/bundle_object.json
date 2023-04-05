@@ -4,7 +4,7 @@
   "type": "object",
   "$ref": "contents_object.json#/definitions/contents_object",
   "definitions": {
-    "contents_object": {
+    "content_object": {
       "type": "object",
       "properties": {
         "name": {
@@ -31,7 +31,8 @@
         }
       },
       "required": [
-        "name"
+        "name",
+        "contents"
       ],
       "additionalProperties": false
     }

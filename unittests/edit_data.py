@@ -48,12 +48,12 @@ def get_drs_object(drs_id, expand = False):
                             drs_object = {
                                 "name": "",
                                 "id": "",
-                                "drs_uri": "",
+                                "drs_uri": [],
                                 "contents": ""
                             }
                             drs_object["name"] = bundle["name"]
                             drs_object["id"] = bundle["id"]
-                            drs_object["drs_uri"] = "" #bundle[""]
+                            drs_object["drs_uri"] = [] #bundle[""]
                             if bundle["contents"]:
                                 drs_object["contents"] = bundle["contents"]
                             else:
@@ -81,14 +81,14 @@ def get_bundle_object(drs_id, expand):
                         for children in bundles[drs_id]:
                             bundle = get_bundle_object(children, expand)
                             drs_object = {
-                                "name": "",
+                                #"name": "",
                                 "id": "",
-                                "drs_uri": "",
+                                "drs_uri": [],
                                 "contents": ""
                             }
-                            drs_object["name"] = bundle["name"]
+                            #drs_object["name"] = bundle["name"]
                             drs_object["id"] = bundle["id"]
-                            drs_object["drs_uri"] = "" #bundle[""]
+                            drs_object["drs_uri"] = [] 
                             if bundle["contents"] and expand == True:
                                 drs_object["contents"] = bundle["contents"]
                             else:
@@ -100,7 +100,7 @@ def get_bundle_object(drs_id, expand):
                 drs_object = {
                                 "name": data[drs_id]["name"],
                                 "id": data[drs_id]["id"],
-                                "drs_uri": "",
+                                "drs_uri": [],
                                 "contents": ""
                             }
                 return drs_object

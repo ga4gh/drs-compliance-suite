@@ -81,3 +81,27 @@ class ValidateResponse():
             self.case.set_status_fail()
             self.case.set_message(f"Expected Content-Type {expected_content_type}, but got Unexpected Content-Type: {actual_content_type}")
         self.case.set_end_time_now()
+
+    def validate_expand_bundle(self):
+        if self.case.get_status() != Status.SKIP:
+            #print(self.actual_response.json())
+            if 'contents' in self.actual_response.json():
+                expected_schema_file_path = os.path.join(SCHEMA_DIR, self.response_schema_file)
+                expected_schema = self.get_schema(expected_schema_file_path)
+                absolute_schema_file_path = os.path.dirname(os.path.abspath(expected_schema_file_path))
+                reference_resolver = jsonschema.RefResolver(base_uri=f"file://{absolute_schema_file_path}/", referrer=None)
+                print()
+                try:
+                    validate(instance=self.actual_response.json(), resolver=reference_resolver, schema=expected_schema)
+                    self.case.set_status_pass()
+                    self.case.set_message("Schema Validation Successful")
+                except Exception as e:
+                    self.case.set_message(e.message if hasattr(e,"message") else str(e))
+                    self.case.add_log_message(f"Stack Trace: {str(e)}")
+                    self.case.set_status_fail()
+            else:
+                self.case.set_status_skip()
+        else:
+            pass
+        self.case.set_end_time_now()
+        return
