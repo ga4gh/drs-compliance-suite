@@ -318,7 +318,12 @@ def send_request(
         # 1. DRS Objects: /objects/{object_id}
         # 2. DRS Object Access: /objects/{object_id}/access/{access_id}
         drs_object_passport = kwargs["drs_object_passport_map"][kwargs["drs_object_id"]]
-        request_body = {"passports": [drs_object_passport]}
+        
+        if 'expand' in kwargs.keys():
+            request_body = {"passports": [drs_object_passport], "expand": True}
+        else:
+            request_body = {"passports": [drs_object_passport]}
+
         http_method = "POST"
     elif auth_type in ("basic", "bearer", "none") or endpoint_url == SERVICE_INFO_URL:
         # endpoint Service Info: /service-info allows auth_type: "basic", "bearer" or "none"
@@ -326,7 +331,7 @@ def send_request(
     else:
         raise ValueError("Invalid auth_type")
 
-    if 'expand' in kwargs.keys():
+    if 'expand' in kwargs.keys() and auth_type != "passport":
         params = {'expand': True}
     else:
         params = {}
