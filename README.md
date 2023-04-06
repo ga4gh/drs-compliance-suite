@@ -36,7 +36,7 @@ export PYTHONPATH=<absolute path to drs-compliance-suite>
 * First spin up a DRS starter kit on port 8085 or a port of your choice. Make sure to specify the port number correctly in the next step.
 * The following command will run the DRS complaince suite against the specified DRS implementation.
 ``` 
-python compliance_suite/report_runner.py --server_base_url "http://localhost:8085/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --auth_type "basic" --drs_version "1.2.0" --serve --serve_port 56565
+python compliance_suite/report_runner.py --server_base_url "http://localhost:8085/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --drs_version "1.2.0" --config_file "compliance_suite/config/config_samples/config_basic.json" --serve --serve_port 56565
 ```
 ### Command Line Arguments
 #### <TODO: Add a table with default values, data type !!>
@@ -44,21 +44,14 @@ python compliance_suite/report_runner.py --server_base_url "http://localhost:808
 * **--server_base_url** : base url of the DRS implementation that is being tested by the compliance suite
 * **--platform_name** : name of the platform hosting the DRS server
 * **--platform_description** : description of the platform hosting the DRS server
-* **--auth_type** : type of authentication used in the DRS server implementation. It can be one of the following -
-  * "none"
-  * "basic"
-  * "bearer"
-  * "passport"
 * **--drs_version** : version of DRS implemented by the DRS server. It can be one of the following -
   * "1.2.0"
 * **--serve** : If this flag is set, the output report is served as an html webpage.
 * **--serve_port** : The port where the output report html is deployed when serve option is used. Default value = 57568 
+* **--config_file** : The File path of JSON config file. The config file must contain auth information for service-info endpoint and different DRS objects
 
-Depending on the auth type selected, the appropriate credentials must be provided by the end user
-* Example credentials may be found for the associated auth type
-  * "basic" : compliance_suite/config/config_basic.json
-  * "bearer" : compliance_suite/config/config_bearer.json
-  * "passport" : compliance_suite/config/config_passport.json
+
+Sample config files are provided in the `compliance_suite/config/config_samples` directory
 
 ## Running the good mock server that follows DRS v1.2.0 specification on port 8085
 ```

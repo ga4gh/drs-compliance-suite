@@ -153,6 +153,6 @@ class Parser:
                             required=True,
                             type=str,
                             help="The File path of JSON config file. The config file must contain auth information "
-                                 "for endpoints and different DRS objects")
+                                 "for service-info endpoint and different DRS objects")
         args = parser.parse_args()
         return (args)
