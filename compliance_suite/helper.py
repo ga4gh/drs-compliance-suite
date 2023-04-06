@@ -130,12 +130,6 @@ class Parser:
                             type=str,
                             choices=["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"],
                             default="INFO")
-        parser.add_argument("--auth_type",
-                            required=False,
-                            help="type of authentication used in the DRS implementation",
-                            type=str,
-                            choices=["none", "basic", "bearer", "passport"],
-                            default="none")
         parser.add_argument("--report_path",
                             required=False,
                             help="path of the output file",
@@ -155,5 +149,10 @@ class Parser:
                             type=int,
                             help="The port where the output report html is deployed",
                             default=57568)
+        parser.add_argument("--config_file",
+                            required=True,
+                            type=str,
+                            help="The File path of JSON config file. The config file must contain auth information "
+                                 "for endpoints and different DRS objects")
         args = parser.parse_args()
         return (args)

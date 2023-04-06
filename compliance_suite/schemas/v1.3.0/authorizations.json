@@ -1,7 +1,7 @@
 {"$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Authorizations",
   "type": "object",
-  "$ref": "quthorizations.json#/definitions/authorizations",
+  "$ref": "authorizations.json#/definitions/authorizations",
   "definitions": {
     "authorizations": {
       "type": "object",
