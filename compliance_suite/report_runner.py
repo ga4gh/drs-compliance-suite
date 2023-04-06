@@ -226,7 +226,7 @@ def test_drs_object_info(
         ### CASE: response expand bundle
         add_test_case_common(
             test_object = drs_object_test,
-            case_type = "expand_bundle",
+            case_type = "response_schema",
             case_name = "DRS Access expand bundle validation",
             case_description = f"Validate DRS bundle when expand = True",
             response = response,
@@ -390,9 +390,6 @@ def add_test_case_common(test_object, case_type, **kwargs):
     elif case_type == 'response_schema':
         validate_response.set_response_schema_file(kwargs['schema_name'])
         validate_response.validate_response_schema()
-    elif case_type == 'expand_bundle':
-        validate_response.set_response_schema_file(kwargs['schema_name'])
-        validate_response.validate_expand_bundle()
     test_case.set_end_time_now()
 
 def add_access_methods_test_case(test_object, case_type, case_description, endpoint_name, response):
