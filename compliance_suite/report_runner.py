@@ -230,7 +230,7 @@ def test_drs_object_info(
             case_name = "DRS Access expand bundle validation",
             case_description = f"Validate DRS bundle when expand = True",
             response = response,
-            schema_name = os.path.join(schema_dir, 'drs_bundle.json'))
+            schema_name = os.path.join(schema_dir, DRS_BUNDLE_SCHEMA))
             
     add_access_methods_test_case(
         test_object = drs_object_test,

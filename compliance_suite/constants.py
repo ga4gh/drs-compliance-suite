@@ -8,3 +8,4 @@ TESTBED_DESCRIPTION = "Test the compliance of a DRS implementation with GA4GH DR
 SERVICE_INFO_URL = "/service-info"
 DRS_OBJECT_INFO_URL = "/objects/"
 DRS_ACCESS_URL = "/access/"
+DRS_BUNDLE_SCHEMA = "drs_bundle.json"
