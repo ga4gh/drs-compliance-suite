@@ -7,22 +7,32 @@
     {
       "drs_id" : "697907bf-d5bd-433e-aac2-1747f1faf366",
       "auth_type": "none",
-      "auth_token": ""
+      "auth_token": "",
+      "is_bundle": false
     },
     {
       "drs_id" : "0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa",
       "auth_type": "none",
-      "auth_token": ""
+      "auth_token": "",
+      "is_bundle": false
     },
     {
       "drs_id" : "1af6b862-7fc8-411a-86c5-d8e280e5b77a",
       "auth_type": "none",
-      "auth_token": ""
+      "auth_token": "",
+      "is_bundle": false
     },
     {
       "drs_id" : "41898242-62a9-4129-9a2c-5a4e8f5f0afb",
       "auth_type": "none",
-      "auth_token": ""
+      "auth_token": "",
+      "is_bundle": false
+    },
+    {
+      "drs_id" : "a1dd4ae2-8d26-43b0-a199-342b64c7dff6",
+      "auth_type": "none",
+      "auth_token": "",
+      "is_bundle": true
     }
   ]
 }

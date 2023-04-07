@@ -3,7 +3,6 @@ from compliance_suite.validate_response import ValidateResponse
 from compliance_suite.validate_drs_object_response import ValidateDRSObjectResponse
 import json
 import requests
-from base64 import b64encode
 from compliance_suite.helper import Parser
 import os
 from compliance_suite.constants import *
@@ -292,7 +291,7 @@ def send_request(
             # 1. DRS Objects: /objects/{object_id}
             # 2. DRS Object Access: /objects/{object_id}/access/{access_id}
             request_body["passports"] = auth_token
-            if "expand" in kwargs & (kwargs["expand"]):
+            if ("expand" in kwargs) and (kwargs["expand"]):
                 request_body["expand"] = True
             http_method = "POST"
         else:
