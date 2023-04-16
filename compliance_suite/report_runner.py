@@ -53,7 +53,7 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
     service_info_phase.set_end_time_now()
 
     # TODO : Add a test case to check that drs version from service-info == drs_version provided.
-    schema_dir = "v" + drs_version + "/"
+    schema_dir = "v" + drs_version
 
     # TODO: extend support to DRS v1.3.0 -
     #  1. make a json map of endpoints per each DRS version
@@ -447,7 +447,8 @@ def main():
         json.dump(output_report_json, f, ensure_ascii=False, indent=4)
 
     if (args.serve):
-        with open("./compliance_suite/web/temp_report.json", 'w', encoding='utf-8') as f:
+        web_dir_path = os.path.join(os.path.dirname(__file__), 'web')
+        with open(os.path.join(web_dir_path,"temp_report.json"), 'w', encoding='utf-8') as f:
             json.dump(output_report_json, f, ensure_ascii=False, indent=4)
         start_mock_server(args.serve_port)
 
