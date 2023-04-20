@@ -195,10 +195,6 @@ def test_drs_object_info(
     skip_access_methods_test_cases = False
     skip_message = ""
 
-    if status_code_pass != Status.PASS:
-        skip_access_methods_test_cases = True
-        skip_message = "Skipping this test case as response status code is not as expected"
-
     if is_bundle:
 
         # Response with expand parameter set to true
