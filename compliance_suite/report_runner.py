@@ -20,7 +20,7 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
     """
     # Read input DRS objects from config folder
     # TODO: Add lower and upper limits to input DRS objects
-    config_service_info, input_drs_objects = get_config_json(config_file)
+    config_service_info, config_drs_object_info, config_drs_object_access = get_config_json(config_file)
 
     # TODO: config json objects must contain auth_token and auth_type for service_info and for each of the drs_objects
     # get authentication information from respective config file based on type of authentication
@@ -68,7 +68,7 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
     drs_object_phase.set_phase_name("drs object info")
     drs_object_phase.set_phase_description("run all the tests for drs object info endpoint")
 
-    for this_drs_object in input_drs_objects:
+    for this_drs_object in config_drs_object_info:
 
         # TODO: Add code to figure out what the expected_status_code
         #  and expected_content_type are for each drs_object_id.
@@ -94,7 +94,7 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
     drs_access_phase.set_phase_name("drs object access")
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
 
-    for this_drs_object in input_drs_objects:
+    for this_drs_object in config_drs_object_access:
         for this_access_id in drs_objects_access_id_map[this_drs_object["drs_id"]]:
             test_drs_object_access(
                 drs_access_phase,
@@ -121,8 +121,9 @@ def get_config_json(config_file):
         with open(os.path.join(config_file), "r") as f:
             config = json.load(f)
             config_service_info = config["service_info"]
-            config_input_drs_objects = config["drs_objects"]
-            return config_service_info, config_input_drs_objects
+            config_drs_object_info = config["drs_object_info"]
+            config_drs_object_access = config["drs_object_access"]
+            return config_service_info, config_drs_object_info, config_drs_object_access
     except Exception as e:
         raise Exception(f"Failed loading JSON config file: {config_file}",e)
 
