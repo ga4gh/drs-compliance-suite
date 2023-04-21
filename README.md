@@ -48,11 +48,14 @@ Pull the latest docker image from dockerhub.
 ```
 docker pull ga4gh/drs-compliance-suite:1.0.3
 ```
-Run the compliance suite using the docker image
+Run the compliance suite using the docker image. Make sure your config file is available at `config/config_drs.json` 
+
 ```
-docker run -d --name drs-compliance-suite -v $(PWD)/output/:/usr/src/app/output/ -p 57568:57568 ga4gh/drs-compliance-suite:1.0.3: --server_base_url "http://host.docker.internal:8085/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --report_path "./output/test-report.json" --drs_version "1.2.0" --config_file "compliance_suite/config/config_samples/config_none.json" --serve --serve_port 57568
+docker run -d --name drs-compliance-suite -v $(PWD)/output/:/usr/src/app/output/ -v ${PWD}/config/:/usr/src/app/config/ -p 57568:57568 ga4gh/drs-compliance-suite:1.0.3 --server_base_url "http://host.docker.internal:8085/ga4gh/drs/v1" --platform_name "ga4gh starter kit drs" --platform_description "GA4GH reference implementation of DRS specification" --report_path "./output/drs-cs-report.json" --drs_version "1.2.0" --config_file "./config/config_drs.json" --serve --serve_port 57568
 ```
-Note: This specific command is an example of running the compliance suite on a local deployment of DRS that is running on port 8085. \
+Note: 
+* To run this docker image on MAC ARM processor, append `--platform linux/x86_64` to the above command.
+* This specific command is an example of running the compliance suite on a local deployment of DRS that is running on port 8085. \
 When running the compliance suite, it's important to configure the command line arguments according to the specific DRS implementation you're testing.
 Please refer to the [Command Line Arguments](#command-line-arguments) section for details on each of these arguments.
 
