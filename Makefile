@@ -13,6 +13,7 @@ docker-build:
 docker-publish:
 	docker image push ${DOCKER_IMG}
 
+# TODO: remove this or parameterize it so it's not hard-coded
 .PHONY: run-docker
 run-docker:
 	docker run -d -v $(PWD)/output/:/usr/src/app/output/ -p 57568:57568 \
