@@ -1,0 +1,54 @@
+{
+ "service_info": {
+   "auth_type": "none",
+   "auth_token": ""
+ },
+ "drs_object_info" : [
+
+   {
+      "drs_id" : "47065fa87f3ac9f58426d4157ab281de",
+      "auth_type": "none",
+      "auth_token": "",
+      "is_bundle": false
+   },
+   {
+      "drs_id" : "0000cc2f56847afb9a238a05c6c7747c",
+      "auth_type": "none",
+      "auth_token": "",
+      "is_bundle": true
+   },
+   {
+      "test_name" : "Invalid drs_id.",
+      "drs_id" : "0000cc2f56",
+      "auth_type": "none",
+      "auth_token": "",
+      "is_bundle": false,
+      "is_fake": true
+   }
+ ],
+ "drs_object_access" : [
+
+   {
+      "drs_id" : "47065fa87f3ac9f58426d4157ab281de",
+      "auth_type": "passport",
+      "auth_token": ["tstv1..valid_xyz"],
+      "is_bundle": false
+   },
+   {
+      "test_name" : "Expired passport with previous access to object.",
+      "drs_id" : "47065fa87f3ac9f58426d4157ab281de",
+      "auth_type": "passport",
+      "auth_token": ["tstv1..expired_xyz"],
+      "is_bundle": false,
+      "invalid_token":true
+   },
+   {
+      "test_name" : "Current passport with no access to object.",
+      "drs_id" : "47065fa87f3ac9f58426d4157ab281de",
+      "auth_type": "passport",
+      "auth_token": ["ncbi_tstv1..current_abc"],
+      "is_bundle": false,
+      "invalid_token":true
+   }
+ ]
+}
