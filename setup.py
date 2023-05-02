@@ -21,7 +21,7 @@ setuptools.setup(
     install_requires=['python-json-logger==2.0.4',
                       'structlog==21.5.0',
                       'requests==2.28.1',
-                      'Flask==2.2.0',
+                      'Flask==2.3.2',
                       'Flask-HTTPAuth==4.7.0',
                       'pytest==7.1.2',
                       'pytest-cov==3.0.0',
