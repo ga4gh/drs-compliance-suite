@@ -7,13 +7,13 @@
     {
       "drs_id" : "697907bf-d5bd-433e-aac2-1747f1faf366",
       "auth_type": "passport",
-      "auth_token": ["passport-366"],
+      "auth_token": "passport-366",
       "is_bundle": false
     },
     {
       "drs_id" : "0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa",
       "auth_type": "passport",
-      "auth_token": ["passport-eaa"],
+      "auth_token": "passport-eaa",
       "is_bundle": false
     },
     {
@@ -39,7 +39,7 @@
     {
       "drs_id" : "697907bf-d5bd-433e-aac2-1747f1faf366",
       "auth_type": "passport",
-      "auth_token": ["passport-366"]
+      "auth_token": "passport-366"
     },
     {
       "drs_id" : "0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa",
@@ -54,7 +54,7 @@
     {
       "drs_id" : "41898242-62a9-4129-9a2c-5a4e8f5f0afb",
       "auth_type": "passport",
-      "auth_token": ["passport-afb"]
+      "auth_token": "passport-afb"
     },
     {
       "drs_id" : "a1dd4ae2-8d26-43b0-a199-342b64c7dff6",

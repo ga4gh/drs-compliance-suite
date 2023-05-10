@@ -289,6 +289,14 @@ def send_request(
             # endpoints that allow auth_type: "passport"
             # 1. DRS Objects: /objects/{object_id}
             # 2. DRS Object Access: /objects/{object_id}/access/{access_id}
+
+            # The `auth_token` variable, which is received from the config file, could be a string or an array of strings.
+            # If `auth_type` is set to "passport", `auth_token` should be an array of passport tokens.
+            # so, ensure auth_token is an array of strings
+            if not isinstance(auth_token, list):
+                auth_token = [str(auth_token)]
+            if isinstance(auth_token, list) and not all(isinstance(t, str) for t in auth_token):
+                auth_token = [str(t) for t in auth_token]
             request_body["passports"] = auth_token
             if ("expand" in kwargs) and (kwargs["expand"]):
                 request_body["expand"] = True
