@@ -18,7 +18,7 @@ jobs:
 
     - run: echo $PYTHONPATH
 
-    - run: python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8085"
+    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8085"
 
     - name: Running Tests
       run: "python -m pytest unittests/ -v"
