@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "msg": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "A detailed error message."
         },
         "status_code": {
