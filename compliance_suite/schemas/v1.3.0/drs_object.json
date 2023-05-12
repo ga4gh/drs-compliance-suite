@@ -82,6 +82,7 @@
         "self_uri",
         "size",
         "created_time",
+        "access_methods",
         "checksums"
       ],
       "additionalProperties": true
