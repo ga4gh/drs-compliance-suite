@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DRS Compliance Suite Auth Info Config",
+    "description": "DRS Compliance Suite Config v1.2",
+    "type": "object",
+    "$ref": "auth_info_schema.json#/definitions/auth_info_schema",
+    "definitions": {
+        "auth_info": {
+            "type": "object",
+            "properties": {
+                "auth_type": {
+                    "type": "string",
+                    "enum": ["none", "passport", "bearer", "basic"],
+                    "description": "Auth type for current DRS object"
+                },
+                "auth_token": {
+                    "description": "File path for the `auth_token` or array of file paths.",
+                    "if": {
+                        "/default_auth_info/auth_type": "passport"
+                    },
+                    "then":{
+                        "type": ["string", "array"]
+                    },
+                    "else":{
+                        "type": "string"
+                    },
+                    "items": {
+                        "type": "string"                        
+                    }
+                },
+                "requires_get_object_auth": {
+                    "type": "boolean",
+                    "description": "True if get object endpoint requires `auth_info`. False by default if not provided. When it is set to True, we assume that get object endpoint uses same `auth_info` as the access endpoint."
+                }
+            },
+            "required": [
+                "auth_type",
+                "auth_token"
+            ]          
+        }
+    }
+}

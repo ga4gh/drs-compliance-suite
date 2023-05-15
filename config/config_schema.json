@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DRS Compliance Suite Config",
+    "description": "DRS Compliance Suite Config v1.2",
+    "type": "object",
+    "$ref": "config_schema.json#/definitions/config_schema",
+    "definitions": {
+        "config_schema": {
+            "type": "object",
+            "properties": {
+                "default_auth_info": {
+                    "type": "object",
+                    "description": "Default `auth_type` and `auth_token` for the access endpoint.",
+                    "$ref": "auth_info_schema.json#/definitions/auth_info_schema"
+                },
+                "service_info_auth":{
+                    "type": "object",
+                    "description": "`auth_type` and `auth_token` for the service_info endpoint. Uses `default_auth_info` if not provided.",
+                    "$ref": "auth_info_schema.json#/definitions/auth_info_schema"
+                },
+                "drs_objects":{
+                    "type": "array",
+                    "description": "List of objects that will be used by the compliance suite to test the server",
+                    "uniqueItems": true,
+                    "minItems": 3,
+                    "items": {
+                        "$ref": "drs_objects_schema.json#/definitions/drs_objects"
+                    }
+                }
+            },
+            "required": [
+              "default_auth_info",
+              "drs_objects"
+            ]
+        }
+    }
+}
