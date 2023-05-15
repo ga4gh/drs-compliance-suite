@@ -24,3 +24,4 @@ WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://127.0.0.1:8088
  * Running on http://10.0.0.161:8088
 [33mPress CTRL+C to quit[0m
+127.0.0.1 - - [15/May/2023 11:13:46] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
