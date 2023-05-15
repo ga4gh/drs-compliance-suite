@@ -35,11 +35,11 @@
           ]
         },
         "access_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "An arbitrary string to be passed to the `/access` method to get an `AccessURL`. This string must be unique within the scope of a single object. Note that at least one of `access_url` and `access_id` must be provided."
         },
         "region": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "Name of the region in the cloud service provider that the object belongs to.",
           "example": "us-east-1"
         },

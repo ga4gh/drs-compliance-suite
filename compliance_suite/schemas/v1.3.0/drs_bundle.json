@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "DRS object info",
-  "description": "DRS object info v1.2",
+  "description": "DRS object info v1.3",
   "type": "object",
-  "$ref": "drs_object.json#/definitions/drs_object",
+  "$ref": "drs_bundle.json#/definitions/drs_bundle",
   "definitions": {
-    "drs_object": {
+    "drs_bundle": {
       "type": "object",
       "properties": {
         "id": {
@@ -14,7 +14,7 @@
         },
         "name": {
           "type": ["string", "null"],
-          "description": "A string that can be used to name a `DrsObject`.\nThis string is made up of uppercase and lowercase letters, decimal digits, hyphen, period, and underscore [A-Za-z0-9.-_]. See http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282[portable filenames]."
+          "description": "A string that can be used to name a `DrsObject`.\nThis string is made up of uppercase and lowercase letters, decimal digits, hypen, period, and underscore [A-Za-z0-9.-_]. See http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_282[portable filenames]."
         },
         "self_uri": {
           "type": "string",
@@ -52,7 +52,6 @@
         },
         "access_methods": {
           "type": "array",
-          "minItems": 1,
           "items": {
             "$ref": "access_method.json#/definitions/access_method"
           },
@@ -61,6 +60,7 @@
         "contents": {
           "type": "array",
           "description": "If not set, this `DrsObject` is a single blob. If set, this `DrsObject` is a bundle containing the listed `ContentsObject` s (some of which may be further nested).",
+          "minItems": 1,
           "items": {
             "$ref": "contents_object.json#/definitions/contents_object"
           }
@@ -82,8 +82,8 @@
         "self_uri",
         "size",
         "created_time",
-        "access_methods",
-        "checksums"
+        "checksums",
+        "contents"
       ],
       "additionalProperties": true
     }
