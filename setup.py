@@ -20,7 +20,7 @@ setuptools.setup(
     python_requires='>=3.8',
     install_requires=['python-json-logger==2.0.4',
                       'structlog==21.5.0',
-                      'requests==2.28.1',
+                      'requests==2.31.0',
                       'Flask==2.2.0',
                       'Flask-HTTPAuth==4.7.0',
                       'pytest==7.1.2',
