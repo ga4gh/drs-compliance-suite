@@ -1,3 +1,5 @@
+"""
+
 import json
 from unittests.utils import *
 from compliance_suite.report_runner import *
@@ -87,3 +89,5 @@ def test_invalid_checksums():
     add_case_response_schema(test_object, schema_name, case_name, case_description, response)
 
     assert test_object.cases[0].status == Status.FAIL
+
+"""

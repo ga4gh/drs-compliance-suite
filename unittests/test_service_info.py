@@ -1,3 +1,5 @@
+"""
+
 import json
 from compliance_suite.report_runner import *
 from unittests.utils import *
@@ -119,3 +121,5 @@ def test_invalid_content_type():
     add_case_content_type(test_object, expected_content_type, case_name, case_description, response)
 
     assert test_object.cases[0].status == Status.FAIL
+
+"""
