@@ -18,8 +18,17 @@ jobs:
 
     - run: echo $PYTHONPATH
 
-    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8089" &
+    # PORT NUMBERS:
+    # bad mock server (none):     8088
+    # good mock server (no auth): 8089
+    # good mock server (basic):   8090
+    # good mock server (bearer):  8091
+    # good mock server (passport):8092
     - run: nohup python unittests/bad_mock_server.py --auth_type "none" --app_host "0.0.0.0" --app_port "8088" &
+    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "none" --app_host "0.0.0.0" --app_port "8089" &
+    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "basic" --app_host "0.0.0.0" --app_port "8090" &
+    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "bearer" --app_host "0.0.0.0" --app_port "8091" &
+    - run: nohup python unittests/good_mock_server_v1.2.0.py --auth_type "passport" --app_host "0.0.0.0" --app_port "8092" &
 
     - name: Running Tests
       run: "python -m pytest unittests/ -v"

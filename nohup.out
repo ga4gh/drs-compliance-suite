@@ -35,3 +35,266 @@ WARNING: This is a development server. Do not use it in a production deployment.
  * Debug mode: off
 Address already in use
 Port 8088 is in use by another program. Either identify and stop that program, or start the server with a different port.
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Serving Flask app 'good_mock_server_v1.2.0'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8090
+ * Running on http://10.0.0.161:8090
+[33mPress CTRL+C to quit[0m
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Serving Flask app 'good_mock_server_v1.2.0'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8091
+ * Running on http://10.0.0.161:8091
+[33mPress CTRL+C to quit[0m
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Serving Flask app 'good_mock_server_v1.2.0'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8092
+ * Running on http://10.0.0.161:8092
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:44:35] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:44:35] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:47:10] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:47:10] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:30] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:54:48] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:54:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:55:00] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:00] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:01] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:01] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:55:01] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:56:08] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:56:08] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 09:57:29] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:29] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 09:57:30] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/service-info HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 401 -
+127.0.0.1 - - [24/May/2023 10:02:48] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1[0m" 400 -
+127.0.0.1 - - [24/May/2023 10:02:48] "[31m[1mGET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1[0m" 400 -
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Serving Flask app 'good_mock_server_v1.2.0'
+ * Debug mode: off
+Address already in use
+Port 8090 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [24/May/2023 10:19:26] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:27] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:19:28] "POST /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:03] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:03] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:03] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:03] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6?expand=True HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "GET /ga4gh/drs/v1/service-info HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/a1dd4ae2-8d26-43b0-a199-342b64c7dff6 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:04] "POST /ga4gh/drs/v1/objects/697907bf-d5bd-433e-aac2-1747f1faf366/access/338e433b-e0f4-4261-9d25-1863b2dcf08d HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:05] "POST /ga4gh/drs/v1/objects/0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa/access/db070dcb-15cd-4a28-aa84-c7b3caa4f43a HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:05] "POST /ga4gh/drs/v1/objects/1af6b862-7fc8-411a-86c5-d8e280e5b77a/access/73fec6d9-3de7-4c92-8ca4-96d6dafaace9 HTTP/1.1" 200 -
+127.0.0.1 - - [24/May/2023 10:25:05] "POST /ga4gh/drs/v1/objects/41898242-62a9-4129-9a2c-5a4e8f5f0afb/access/9488e423-d243-4d08-807c-d35be1b144f1 HTTP/1.1" 200 -

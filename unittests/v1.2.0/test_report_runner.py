@@ -1,73 +1,49 @@
-from compliance_suite.report_runner import *
+import unittest
+from parameterized import parameterized
+from compliance_suite.report_runner import add_access_methods_test_case
+from unittest.mock import patch, Mock
 
-auth_types = ["none", "basic", "bearer", "passport"]
-def test_report_runner():
+class TestReportRunner(unittest.TestCase):
 
-    good_report = report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v1",
-                                            platform_name = "good mock server",
-                                            platform_description = "test",
-                                            drs_version = "1.2.0",
-                                            config_file = "compliance_suite/config/config_samples/config_basic.json")
+    @parameterized.expand([
+        ("has_access_methods"),
+        ("has_access_info")])
+    @patch('compliance_suite.report_runner.ValidateDRSObjectResponse')
+    def test_add_access_methods_test_case(self, case_type, MockValidateDRSObjectResponse):
 
-    actual_good_json = json.loads(good_report.to_json())
+        test_object = Mock()
+        case_description = "Test case for access methods"
+        endpoint_name = "Test endpoint"
+        response = Mock()
+        mock_validate_drs_response = Mock()
+        MockValidateDRSObjectResponse.return_value = mock_validate_drs_response
+        skip_access_methods_test_cases = False
+        skip_message=""
+        is_bundle = False
+        access_id_list = add_access_methods_test_case(
+            test_object,
+            case_type,
+            case_description,
+            endpoint_name,
+            response,
+            skip_access_methods_test_cases,
+            skip_message,
+            is_bundle
+        )
 
-    # TODO: None and BearerAuth 
+        # Assertions
+        test_object.add_case.assert_called()
+        test_case = test_object.add_case.return_value
+        test_case.set_case_name.assert_called_with(f"{endpoint_name} has access information")
+        test_case.set_case_description.assert_called_with(case_description)
+        mock_validate_drs_response.set_case.assert_called_with(test_case)
+        mock_validate_drs_response.set_actual_response.assert_called_with(response)
+        test_case.set_end_time_now.assert_called()
 
-    # remove timestamps, otherwise assert will fail 100%
-    actual_good_json["start_time"] = ""
-    actual_good_json["end_time"] = ""
-    for phase in actual_good_json["phases"]:
-        phase["start_time"] = ""
-        phase["end_time"] = ""
-        for test in phase["tests"]:
-            test["start_time"] = ""
-            test["end_time"] = ""
-            for case in test["cases"]:
-                case["start_time"] = ""
-                case["end_time"] = ""
-
-    expect_final_json = json.loads(
-        open("unittests/output/expected_good.json", "r").read()
-    )
-    actual_json_s = str(actual_good_json).replace("'", '"').replace("\\","")
-    expect_json_s = str(expect_final_json).replace("'", '"').replace("\\","")
-
-    # expect_final_json will vary throughout production of cs
-    assert actual_json_s == expect_json_s
-
-def test_send_request():
-    for auth_type in auth_types:
-        
-        auth_token = "user-1"
-
-        request_body = {}
-        if auth_type == "passport":
-            request_body["passports"] = auth_token
-
-        headers = {}
-        if auth_type == "basic":
-            headers = {"Authorization": "Basic {}".format(auth_token)}
-        if auth_type == "bearer":
-            headers = {"Authorization": "Bearer {}".format(auth_token)}
-
-
-        response = send_request("http://localhost:8089/ga4gh/drs/v1",
-                                SERVICE_INFO_URL,
-                                auth_type,
-                                auth_token)
-        
-        
-        actual_response = requests.request(method = "GET",
-                                            url = "http://localhost:8089/ga4gh/drs/v1" + SERVICE_INFO_URL,
-                                            params = {},
-                                            json = {},
-                                            headers = headers)
-
-def test_add_common_test_cases():
-    return
-        
-def test_add_test_case_common():
-    return
-
-def test_add_access_methods_test_case():
-    return
+        if case_type == "has_access_methods":
+            mock_validate_drs_response.validate_has_access_methods.assert_called()
+            mock_validate_drs_response.validate_has_access_info.assert_not_called()
+            self.assertIsNone(access_id_list)
+        else:
+            mock_validate_drs_response.validate_has_access_methods.assert_not_called()
+            mock_validate_drs_response.validate_has_access_info.assert_called()

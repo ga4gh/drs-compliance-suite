@@ -8,13 +8,13 @@ good_report = report_runner(server_base_url = "http://localhost:8089/ga4gh/drs/v
                                         platform_name = "good mock server",
                                         platform_description = "test",
                                         drs_version = "1.2.0",
-                                        config_file = "compliance_suite/config/config_samples/config_basic.json")
+                                        config_file = "compliance_suite/config/config_samples/config_none.json")
 
 bad_report = report_runner(server_base_url = "http://localhost:8088/ga4gh/drs/v1",
                                         platform_name = "bad mock server",
                                         platform_description = "test",
                                         drs_version = "1.2.0",
-                                        config_file = "compliance_suite/config/config_samples/config_basic.json")
+                                        config_file = "compliance_suite/config/config_samples/config_none.json")
 
 actual_good_json = json.loads(good_report.to_json())
 
