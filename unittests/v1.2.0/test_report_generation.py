@@ -28,8 +28,8 @@ def test_report_runner():
                     case["start_time"] = ""
                     case["end_time"] = ""
 
-        # USE THIS: uncomment below to generate a new expected_.json
-        # with open('expected_' + authtype + '.json', 'w', encoding="utf-8") as f: json.dump(good_json, f)
+        # USE THIS: uncomment below to generate a new expected_[none/basic/bearer/passport].json
+        # with open('unittests/output/expected_' + authtype + '.json', 'w', encoding="utf-8") as f: json.dump(good_json, f)
 
         expect_final_json = json.loads(
             open("unittests/output/expected_" + authtype + ".json", "r").read()
