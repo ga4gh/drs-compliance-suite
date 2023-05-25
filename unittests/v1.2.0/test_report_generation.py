@@ -2,6 +2,13 @@ from compliance_suite.report_runner import *
 
 auth_types = ["none", "basic", "bearer", "passport"]
 
+def test_constructor():
+    tvr = ValidateResponse()
+    assert tvr.actual_response == ""
+    assert tvr.expected_response == ""
+    assert tvr.response_schema_file == ""
+    assert tvr.case == ""
+    
 def test_report_runner():
 
     port_numbers = [8089, 8090, 8091, 8092]
@@ -27,6 +34,7 @@ def test_report_runner():
                 for case in test["cases"]:
                     case["start_time"] = ""
                     case["end_time"] = ""
+                    assert case["status"] == "PASS"
 
         # USE THIS: uncomment below to generate a new expected_[none/basic/bearer/passport].json
         # with open('unittests/output/expected_' + authtype + '.json', 'w', encoding="utf-8") as f: json.dump(good_json, f)
