@@ -5,7 +5,7 @@
         "DRS Compliance Suite"
     ],
     "testbed_version": [
-        "v0.0.0"
+        "v1.0.3"
     ],
     "testbed_description": [
         "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification"

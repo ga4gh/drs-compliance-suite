@@ -2,12 +2,12 @@
     "schema_name": "ga4gh-testbed-report",
     "schema_version": "0.1.0",
     "testbed_name": "DRS Compliance Suite",
-    "testbed_version": "v0.0.0",
+    "testbed_version": "v1.0.3",
     "testbed_description": "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification",
     "platform_name": "good mock server",
-    "platform_description": "basic",
+    "platform_description": "none",
     "input_parameters": {
-      "server_base_url": "http://localhost:8090/ga4gh/drs/v1"
+      "server_base_url": "http://localhost:8089/ga4gh/drs/v1"
     },
     "start_time": "",
     "end_time": "",
@@ -35,7 +35,7 @@
         },
         "tests": [
           {
-            "test_name": "Run test cases on the service-info endpoint; auth_type = basic",
+            "test_name": "Run test cases on the service-info endpoint; auth_type = none",
             "test_description": "validate service-info status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -95,7 +95,7 @@
         },
         "tests": [
           {
-            "test_name": "Run test cases on the drs object info endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366; auth_type = basic",
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366; auth_type = none",
             "test_description": "validate drs object status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -157,7 +157,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs object info endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa; auth_type = basic",
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa; auth_type = none",
             "test_description": "validate drs object status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -219,7 +219,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs object info endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a; auth_type = basic",
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a; auth_type = none",
             "test_description": "validate drs object status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -281,7 +281,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs object info endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb; auth_type = basic",
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb; auth_type = none",
             "test_description": "validate drs object status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -343,7 +343,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs object info endpoint for drs id = a1dd4ae2-8d26-43b0-a199-342b64c7dff6; auth_type = basic",
+            "test_name": "Run test cases on the drs object info endpoint for drs id = a1dd4ae2-8d26-43b0-a199-342b64c7dff6; auth_type = none",
             "test_description": "validate drs object status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -430,7 +430,7 @@
         },
         "tests": [
           {
-            "test_name": "Run test cases on the drs access endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366 and access id = 338e433b-e0f4-4261-9d25-1863b2dcf08d; auth_type = basic",
+            "test_name": "Run test cases on the drs access endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366 and access id = 338e433b-e0f4-4261-9d25-1863b2dcf08d; auth_type = none",
             "test_description": "validate drs access status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -474,7 +474,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs access endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa and access id = db070dcb-15cd-4a28-aa84-c7b3caa4f43a; auth_type = basic",
+            "test_name": "Run test cases on the drs access endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa and access id = db070dcb-15cd-4a28-aa84-c7b3caa4f43a; auth_type = none",
             "test_description": "validate drs access status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -518,7 +518,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs access endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a and access id = 73fec6d9-3de7-4c92-8ca4-96d6dafaace9; auth_type = basic",
+            "test_name": "Run test cases on the drs access endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a and access id = 73fec6d9-3de7-4c92-8ca4-96d6dafaace9; auth_type = none",
             "test_description": "validate drs access status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
@@ -562,7 +562,7 @@
             ]
           },
           {
-            "test_name": "Run test cases on the drs access endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb and access id = 9488e423-d243-4d08-807c-d35be1b144f1; auth_type = basic",
+            "test_name": "Run test cases on the drs access endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb and access id = 9488e423-d243-4d08-807c-d35be1b144f1; auth_type = none",
             "test_description": "validate drs access status code, content-type and response schemas",
             "start_time": "",
             "end_time": "",
