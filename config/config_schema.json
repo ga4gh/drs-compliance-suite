@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DRS Compliance Suite Config",
+  "description": "DRS Compliance Suite Config v1.2",
+  "type": "object",
+  "$ref": "config_schema.json#/definitions/config_schema",
+  "definitions": {
+    "config_schema": {
+      "type": "object",
+      "properties": {
+        "default_auth_info": {
+          "type": "object",
+          "description": "Default auth type and token for the server",
+          "properties": {
+            "auth_type": {
+              "type": "string",
+              "description": "The default auth type for DRS object access"
+            },
+            "auth_token": {
+              "type": "string",
+              "description": "The default auth token for DRS object access"
+            }
+          }
+        },
+        "drs_objects":{
+          "type": "array",
+          "items": {
+            "drs_object": {
+              "type": "object",
+              "properties": {
+                "drs_id": {
+                  "type": "string",
+                  "description": "The DRS ID of the object"
+                },
+                "expected_status_code": {
+                  "type": "integer",
+                  "description": "The expected status code for testing the DRS object"
+                },
+                "has_auth_get_object": {
+                  "type": "boolean",
+                  "description": "True if get object endpoint requires auth info"
+                },
+                "is_bundle": {
+                  "type": "boolean",
+                  "description": "True if DRS object is bundle"
+                },
+                "auth_info":{
+                  "type": "object",
+                  "description": "Contains auth type and token if different than default auth",
+                  "properties": {
+                    "auth_type": {
+                      "type": "string",
+                      "description": "Auth type for current DRS object"
+                    },
+                    "auth_token": {
+                      "type": ["string", "array"],
+                      "items": {
+                          "type": "string",
+                          "description": "Auth token for current DRS object"
+                      }
+                    }
+                  }  
+                }  
+              },
+              "required": [
+                "drs_id"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
