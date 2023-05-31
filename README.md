@@ -132,7 +132,7 @@ bash unittests/start.sh
 
 Run the unittests with coverage
 ```
-pytest --cov=compliance_suite unittests/
+python -m pytest unittests/
 ```
 
 Once you are done with unittesting, make sure you terminate the mock servers and remove temporary log files by running this command
