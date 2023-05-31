@@ -25,7 +25,7 @@ setuptools.setup(
                       'Flask-HTTPAuth==4.7.0',
                       'pytest==7.1.2',
                       'pytest-cov==3.0.0',
-                      'ga4gh-testbed-lib==1.0.3'],
+                      'ga4gh-testbed-lib==0.2.0'],
     entry_points='''
         [console_scripts]
         drs-compliance-suite=compliance_suite.report_runner:main

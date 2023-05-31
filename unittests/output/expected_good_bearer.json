@@ -2,7 +2,7 @@
     "schema_name": "ga4gh-testbed-report",
     "schema_version": "0.1.0",
     "testbed_name": "DRS Compliance Suite",
-    "testbed_version": "v1.0.3",
+    "testbed_version": "v0.2.0",
     "testbed_description": "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification",
     "platform_name": "good mock server",
     "platform_description": "bearer",
