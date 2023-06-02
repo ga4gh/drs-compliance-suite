@@ -1,8 +1,8 @@
 import json
-from compliance_suite.report_runner import *
+from compliance_suite.constants import *
 from unittests.resources.expected_service_info import expected_good_service_info_response as expected_response
 from parameterized import parameterized
-from compliance_suite.report_runner import report_runner
+from compliance_suite.report_runner import report_runner, send_request, get_config_json
 
 auth_types = ["none", "basic", "bearer", "passport"]
 port_numbers = ["8089", "8090", "8091", "8092"]
@@ -52,8 +52,6 @@ def mock_report_runner():
 
 
 def mock_request():
-    #send_request(server_base_url,endpoint_url,auth_type,auth_token,**kwargs)
-
     # the other endpoints for possible future tests with drs_object_info and drs_object_access
     # endpoints = [SERVICE_INFO_URL, DRS_OBJECT_INFO_URL, DRS_ACCESS_URL]
 
@@ -71,10 +69,10 @@ def mock_request():
         auth_token = config_service_info["auth_token"]
 
         actual_response = send_request(server_base_url, endpoint_url, authtype, auth_token)
+        
+        responses.append((actual_response.json(),))
 
-        responses.append(actual_response.text)
-
-        return responses
+    return responses
 
         
 
@@ -86,6 +84,4 @@ def test_report_runner(authtype, good_mock_actual_report_json):
 
 @parameterized.expand(mock_request())
 def test_send_response(actual_response):
-    actual_s = json_string_formatting(actual_response)
-    expected_s = json_string_formatting(expected_response)
-    assert actual_s == expected_s
+    assert actual_response == expected_response

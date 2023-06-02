@@ -132,7 +132,7 @@ bash unittests/start.sh
 
 Run the unittests with coverage
 ```
-python -m pytest unittests/
+python3 -m pytest unittests/
 ```
 
 Once you are done with unittesting, make sure you terminate the mock servers and remove temporary log files by running this command
