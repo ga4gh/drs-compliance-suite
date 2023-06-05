@@ -24,12 +24,12 @@ jobs:
     # good mock server (basic):   8090
     # good mock server (bearer):  8091
     # good mock server (passport):8092
-    - run: bash start.sh
+    - run: bash unittests/start.sh
 
     - name: Running Tests
       run: "python -m pytest unittests/ -v"
 
-    - run: bash stop.sh
+    - run: bash unittests/stop.sh
 
     # FOR FUTURE PR: CODE TEST COVERAGE
     # - name: After Success Submitting Code Coverage
