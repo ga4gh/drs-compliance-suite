@@ -53,6 +53,17 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+nohup.out
+bad_pid.txt
+good_none_pid.txt
+good_basic_pid.txt
+good_bearer_pid.txt
+good_passport_pid.txt
+bad.log
+good_none.log
+good_basic.log
+good_bearer.log
+good_passport.log
 
 # Translations
 *.mo

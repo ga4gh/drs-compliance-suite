@@ -1,0 +1,611 @@
+{
+    "schema_name": "ga4gh-testbed-report",
+    "schema_version": "0.1.0",
+    "testbed_name": "DRS Compliance Suite",
+    "testbed_version": "v0.2.0",
+    "testbed_description": "Test the compliance of a DRS implementation with GA4GH DRS v1.2.0 specification",
+    "platform_name": "good mock server",
+    "platform_description": "none",
+    "input_parameters": {
+      "server_base_url": "http://localhost:8089/ga4gh/drs/v1"
+    },
+    "start_time": "",
+    "end_time": "",
+    "status": "PASS",
+    "summary": {
+      "unknown": 0,
+      "passed": 40,
+      "warned": 0,
+      "failed": 0,
+      "skipped": 1
+    },
+    "phases": [
+      {
+        "phase_name": "service info",
+        "phase_description": "run all the tests for service_info endpoint",
+        "start_time": "",
+        "end_time": "",
+        "status": "PASS",
+        "summary": {
+          "unknown": 0,
+          "passed": 3,
+          "warned": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "tests": [
+          {
+            "test_name": "Run test cases on the service-info endpoint; auth_type = none",
+            "test_description": "validate service-info status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 3,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "Service Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "Service Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "Service Info response schema validation",
+                "case_description": "Validate Service Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "phase_name": "drs object info",
+        "phase_description": "run all the tests for drs object info endpoint",
+        "start_time": "",
+        "end_time": "",
+        "status": "PASS",
+        "summary": {
+          "unknown": 0,
+          "passed": 25,
+          "warned": 0,
+          "failed": 0,
+          "skipped": 1
+        },
+        "tests": [
+          {
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366; auth_type = none",
+            "test_description": "validate drs object status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 5,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Object Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Object Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Object Info response schema validation",
+                "case_description": "Validate DRS Object Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that DRS Object Info response has access_methods field provided and that it is non-empty",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "'access_methods' is provided and it is non-empty."
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that each access_method in the access_methods field of the DRS Object Info response has atleast one of 'access_url'or 'access_id' provided",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "At least 'access_url' or 'access_id' is provided in all access_methods"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa; auth_type = none",
+            "test_description": "validate drs object status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 5,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Object Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Object Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Object Info response schema validation",
+                "case_description": "Validate DRS Object Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that DRS Object Info response has access_methods field provided and that it is non-empty",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "'access_methods' is provided and it is non-empty."
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that each access_method in the access_methods field of the DRS Object Info response has atleast one of 'access_url'or 'access_id' provided",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "At least 'access_url' or 'access_id' is provided in all access_methods"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a; auth_type = none",
+            "test_description": "validate drs object status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 5,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Object Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Object Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Object Info response schema validation",
+                "case_description": "Validate DRS Object Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that DRS Object Info response has access_methods field provided and that it is non-empty",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "'access_methods' is provided and it is non-empty."
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that each access_method in the access_methods field of the DRS Object Info response has atleast one of 'access_url'or 'access_id' provided",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "At least 'access_url' or 'access_id' is provided in all access_methods"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs object info endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb; auth_type = none",
+            "test_description": "validate drs object status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 5,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Object Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Object Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Object Info response schema validation",
+                "case_description": "Validate DRS Object Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that DRS Object Info response has access_methods field provided and that it is non-empty",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "'access_methods' is provided and it is non-empty."
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that each access_method in the access_methods field of the DRS Object Info response has atleast one of 'access_url'or 'access_id' provided",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "At least 'access_url' or 'access_id' is provided in all access_methods"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs object info endpoint for drs id = a1dd4ae2-8d26-43b0-a199-342b64c7dff6; auth_type = none",
+            "test_description": "validate drs object status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 5,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 1
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Object Info response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Object Info response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Object Info response schema validation",
+                "case_description": "Validate DRS Object Info response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Access expand bundle validation",
+                "case_description": "Validate DRS bundle when expand = True",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that DRS Object Info response has access_methods field provided and that it is non-empty",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "SKIP",
+                "message": "Skip this test case as access_methods is optional for a DRS Bundle"
+              },
+              {
+                "case_name": "DRS Object Info has access information",
+                "case_description": "Validate that each access_method in the access_methods field of the DRS Object Info response has atleast one of 'access_url'or 'access_id' provided",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "access_methods is not provided. It is not required for a DRS Bundle"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "phase_name": "drs object access",
+        "phase_description": "run all the tests for drs access endpoint",
+        "start_time": "",
+        "end_time": "",
+        "status": "PASS",
+        "summary": {
+          "unknown": 0,
+          "passed": 12,
+          "warned": 0,
+          "failed": 0,
+          "skipped": 0
+        },
+        "tests": [
+          {
+            "test_name": "Run test cases on the drs access endpoint for drs id = 697907bf-d5bd-433e-aac2-1747f1faf366 and access id = 338e433b-e0f4-4261-9d25-1863b2dcf08d; auth_type = none",
+            "test_description": "validate drs access status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 3,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Access response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Access response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Access response schema validation",
+                "case_description": "Validate DRS Access response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs access endpoint for drs id = 0bb9d297-2710-48f6-ab4d-80d5eb0c9eaa and access id = db070dcb-15cd-4a28-aa84-c7b3caa4f43a; auth_type = none",
+            "test_description": "validate drs access status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 3,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Access response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Access response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Access response schema validation",
+                "case_description": "Validate DRS Access response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs access endpoint for drs id = 1af6b862-7fc8-411a-86c5-d8e280e5b77a and access id = 73fec6d9-3de7-4c92-8ca4-96d6dafaace9; auth_type = none",
+            "test_description": "validate drs access status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 3,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Access response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Access response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Access response schema validation",
+                "case_description": "Validate DRS Access response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              }
+            ]
+          },
+          {
+            "test_name": "Run test cases on the drs access endpoint for drs id = 41898242-62a9-4129-9a2c-5a4e8f5f0afb and access id = 9488e423-d243-4d08-807c-d35be1b144f1; auth_type = none",
+            "test_description": "validate drs access status code, content-type and response schemas",
+            "start_time": "",
+            "end_time": "",
+            "status": "PASS",
+            "summary": {
+              "unknown": 0,
+              "passed": 3,
+              "warned": 0,
+              "failed": 0,
+              "skipped": 0
+            },
+            "message": "",
+            "cases": [
+              {
+                "case_name": "DRS Access response status code validation",
+                "case_description": "Check if the response status code is 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Response status code is 200"
+              },
+              {
+                "case_name": "DRS Access response content-type validation",
+                "case_description": "Check if the content-type is application/json",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Content-Type matches expected type"
+              },
+              {
+                "case_name": "DRS Access response schema validation",
+                "case_description": "Validate DRS Access response schema when status = 200",
+                "log_messages": [],
+                "start_time": "",
+                "end_time": "",
+                "status": "PASS",
+                "message": "Schema Validation Successful"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

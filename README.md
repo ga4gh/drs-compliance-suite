@@ -124,9 +124,20 @@ You can find some sample config files [here](./compliance_suite/config/config_sa
 
 ## Unittesting
 
+Firstly, run the mock servers using this script command
+```
+bash unittests/start.sh
+```
+
+
 Run the unittests with coverage
 ```
-pytest --cov=compliance_suite unittests/
+python3 -m pytest unittests/
+```
+
+Once you are done with unittesting, make sure you terminate the mock servers and remove temporary log files by running this command
+```
+bash unittests/stop.sh
 ```
 
 ## Changelog
