@@ -10,7 +10,6 @@ port_numbers = ["8089", "8090", "8091", "8092"]
 def json_string_formatting(json_string):
     return str(json_string).replace("'", '"').replace("\\","")
 
-
 def mock_report_runner():
     """
     This method generates and returns a list of tuples representing the good mock server report
@@ -50,7 +49,6 @@ def mock_report_runner():
 
     return reports
 
-
 def mock_request():
     # the other endpoints for possible future tests with drs_object_info and drs_object_access
     # endpoints = [SERVICE_INFO_URL, DRS_OBJECT_INFO_URL, DRS_ACCESS_URL]
@@ -73,8 +71,6 @@ def mock_request():
         responses.append((actual_response.json(),))
 
     return responses
-
-        
 
 @parameterized.expand(mock_report_runner())
 def test_report_runner(authtype, good_mock_actual_report_json):
