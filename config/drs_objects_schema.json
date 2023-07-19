@@ -1,0 +1,34 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "DRS Compliance Suite DRS Objects Schema Config",
+    "description": "DRS Compliance Suite Config v1.2",
+    "type": "object",
+    "$ref": "drs_objects_schema.json#/definitions/drs_object",
+    "definitions": {
+        "drs_object": {
+            "type": "object",
+            "properties": {
+                "drs_id": {
+                    "type": "string",
+                    "description": "The DRS ID of the object"
+                },
+                "expected_status_code": {
+                    "type": "integer",
+                    "description": "The expected status code for testing the DRS object. 200 by default if not provided."
+                },
+                "is_bundle": {
+                    "type": "boolean",
+                    "description": "True if DRS object is bundle. False by default if not provided."
+                },
+                "auth_info":{
+                    "type": "object",
+                    "description": "Contains `auth_type` and `auth_token` if different than `default_auth`. Uses `default_auth` if not provided.",
+                    "$ref": "auth_info_schema.json#/definitions/auth_info_schema" 
+                }
+            },
+            "required": [
+                "drs_id"
+            ]
+        }
+    }
+}
