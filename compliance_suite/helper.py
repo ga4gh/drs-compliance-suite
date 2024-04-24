@@ -154,5 +154,18 @@ class Parser:
                             type=str,
                             help="The File path of JSON config file. The config file must contain auth information "
                                  "for service-info endpoint and different DRS objects")
+        parser.add_argument("--submit_url",
+                            required=False,
+                            type=str,
+                            help="The URL for the testbed api that the report is to be submitted to",
+                            default="http://localhost:4500/reports")
+        parser.add_argument("--submit_id",
+                            required=False,
+                            type=str,
+                            help="Report series ID")
+        parser.add_argument("--submit_token",
+                            required=False,
+                            type=str,
+                            help="Report series token")
         args = parser.parse_args()
         return (args)

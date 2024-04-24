@@ -1,4 +1,5 @@
 from ga4gh.testbed.report.report import Report
+from ga4gh.testbed.submit.report_submitter import ReportSubmitter
 from compliance_suite.validate_response import ValidateResponse
 from compliance_suite.validate_drs_object_response import ValidateDRSObjectResponse
 import json
@@ -456,6 +457,16 @@ def main():
         with open(os.path.join(web_dir_path,"temp_report.json"), 'w', encoding='utf-8') as f:
             json.dump(output_report_json, f, ensure_ascii=False, indent=4)
         start_mock_server(args.serve_port)
+
+    # attempt to submit to testbed api service
+    if (args.submit_url) and (args.submit_id) and (args.submit_token):
+        print("Attempting to submit to testbed API...")
+        response = ReportSubmitter.submit_report(args.submit_id, args.submit_token, output_report, url=args.submit_url)
+        if response["status_code"] == 200:
+            print("The submission was successful, the report ID is " + response["report_id"])
+        else:
+            print("The submission failed with a status code of " + str(response["status_code"]))
+            print("Error Message: " + str(response["error_message"]))
 
 if __name__=="__main__":
     main()
