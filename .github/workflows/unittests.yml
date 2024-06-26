@@ -20,7 +20,7 @@ jobs:
 
     # PORT NUMBERS:
     # bad mock server (none):     8088
-    # good mock server (no auth): 8089
+    # good mock server (none):    8089
     # good mock server (basic):   8090
     # good mock server (bearer):  8091
     # good mock server (passport):8092
