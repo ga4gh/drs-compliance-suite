@@ -16,10 +16,10 @@ class TestReportRunner(unittest.TestCase):
         endpoint_name = "Test endpoint"
         response = Mock()
         mock_validate_drs_response = Mock()
+        MockValidateDRSObjectResponse.return_value = mock_validate_drs_response
         skip_access_methods_test_cases = False
         skip_message=""
         is_bundle = False
-        MockValidateDRSObjectResponse.return_value = mock_validate_drs_response
         access_id_list = add_access_methods_test_case(
             test_object,
             case_type,

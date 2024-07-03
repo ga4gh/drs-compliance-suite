@@ -428,7 +428,7 @@ def add_access_methods_test_case(
         if is_bundle:
             test_case.set_status_skip()
             test_case.set_message("Skip this test case as access_methods is optional for a DRS Bundle")
-        validate_drs_response.validate_has_access_methods()
+        validate_drs_response.validate_has_access_methods(is_bundle)
     elif case_type == "has_access_info":
         access_id_list = validate_drs_response.validate_has_access_info(is_bundle)
     test_case.set_end_time_now()

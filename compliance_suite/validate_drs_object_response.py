@@ -5,7 +5,7 @@ class ValidateDRSObjectResponse(ValidateResponse):
     def __init__(self):
         super().__init__()
 
-    def validate_has_access_methods(self):
+    def validate_has_access_methods(self, is_bundle):
         """
         Validates that "access_methods" are provided and non-empty
         """
@@ -18,8 +18,12 @@ class ValidateDRSObjectResponse(ValidateResponse):
                 self.case.set_message("'access_methods' is provided and it is non-empty.")
                 self.case.set_status_pass()
             else:
-                self.case.set_message("'access_methods' is not provided. It is required and should be non-empty for a single-blob")
-                self.case.set_status_fail()
+                if is_bundle:
+                    self.case.set_message(f"access_methods is not provided. It is not required for a DRS Bundle")
+                    self.case.set_status_pass()
+                else:
+                    self.case.set_message("'access_methods' is not provided. It is required and should be non-empty for a single-blob")
+                    self.case.set_status_fail()
             self.case.set_end_time_now()
         return
 
