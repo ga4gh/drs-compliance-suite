@@ -1,1 +1,1 @@
-SUPPORTED_DRS_VERSIONS = ["1.2.0"]
+SUPPORTED_DRS_VERSIONS = ["1.2.0", "1.3.0experimental"]
