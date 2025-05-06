@@ -144,3 +144,7 @@ pytest --cov=compliance_suite unittests/
 
 ### v1.0.0
 * DRS Compliance Suite for [Data Repository Service v1.2.0](https://ga4gh.github.io/data-repository-service-schemas/preview/release/drs-1.2.0/docs/)
+
+## Maintainers
+
+* GA4GH Tech Team [ga4gh-tech-team@ga4gh.org](mailto:ga4gh-tech-team@ga4gh.org)
