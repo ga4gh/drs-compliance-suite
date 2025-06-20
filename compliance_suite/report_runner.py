@@ -70,19 +70,12 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
 
     for this_drs_object in config_drs_object_info:
 
-        # TODO: Add code to figure out what the expected_status_code
-        #  and expected_content_type are for each drs_object_id.
         test_drs_object_info(
             drs_object_phase,
             server_base_url,
-            auth_type = this_drs_object["auth_type"],
-            auth_token = this_drs_object["auth_token"],
-            drs_object_id = this_drs_object["drs_id"],
-            is_bundle = this_drs_object["is_bundle"],
-            schema_dir = schema_dir,
-            schema_file = DRS_OBJECT_SCHEMA,
-            expected_status_code = "200",
-            expected_content_type = "application/json")
+            this_drs_object,
+            schema_dir = schema_dir
+            )
 
     # TODO: add extra tests to check the case where auth is required but not provided,
     #  it should return an error response object with appropriate status code
@@ -95,18 +88,13 @@ def report_runner(server_base_url, platform_name, platform_description, drs_vers
     drs_access_phase.set_phase_description("run all the tests for drs access endpoint")
 
     for this_drs_object in config_drs_object_access:
-        for this_access_id in drs_objects_access_id_map[this_drs_object["drs_id"]]:
+        for this_access_id in drs_objects_access_id_map[this_drs_object["drs_id"]]:          
             test_drs_object_access(
                 drs_access_phase,
                 server_base_url,
-                auth_type = this_drs_object["auth_type"],
-                auth_token = this_drs_object["auth_token"],
-                drs_object_id = this_drs_object["drs_id"],
+                this_drs_object,
                 drs_access_id = this_access_id,
-                schema_dir = schema_dir,
-                schema_file = DRS_ACCESS_SCHEMA,
-                expected_status_code = "200",
-                expected_content_type = "application/json")
+                schema_dir = schema_dir)
 
     drs_access_phase.set_end_time_now()
     report_object.set_end_time_now()
@@ -162,18 +150,25 @@ def test_service_info(
 def test_drs_object_info(
         drs_object_phase,
         server_base_url,
-        auth_type,
-        auth_token,
-        drs_object_id,
-        is_bundle,
-        schema_dir,
-        schema_file,
-        expected_status_code,
-        expected_content_type):
+        drs_object,
+        schema_dir
+        ):
+
+    expected_content_type = "application/json"
+    auth_type = drs_object["auth_type"]
+    auth_token = drs_object["auth_token"]
+    drs_object_id = drs_object["drs_id"]
+    is_bundle = drs_object["is_bundle"]
 
     global drs_objects_access_id_map
+    
+    if "test_name" in drs_object:
+        test_name_prefix = drs_object["test_name"] + " "
+    else:
+        test_name_prefix = ""
+
     drs_object_test = drs_object_phase.add_test()
-    drs_object_test.set_test_name(f"Run test cases on the drs object info endpoint for drs id = {drs_object_id}; auth_type = {auth_type}")
+    drs_object_test.set_test_name(f"{test_name_prefix}Run test cases on the drs object info endpoint for drs id = {drs_object_id}; auth_type = {auth_type}")
     drs_object_test.set_test_description("validate drs object status code, content-type and response schemas")
     endpoint_name = "DRS Object Info"
 
@@ -183,6 +178,18 @@ def test_drs_object_info(
         auth_type,
         auth_token)
 
+    if "is_fake" in drs_object and drs_object["is_fake"]:
+        expected_status_code = "404"
+        schema_file = ERROR_SCHEMA
+        skip_access_methods_test_cases = True
+        endpoint_name = "Invalid DRS ID test"
+        skip_message = f"skipping access methods for {endpoint_name}"
+    else:
+        expected_status_code = "200"
+        schema_file = DRS_OBJECT_SCHEMA		
+        skip_access_methods_test_cases = False
+        skip_message = ""
+
     status_code_pass = add_common_test_cases(
         test_object = drs_object_test,
         endpoint_name = endpoint_name,
@@ -191,9 +198,6 @@ def test_drs_object_info(
         expected_content_type = expected_content_type,
         schema_dir = schema_dir,
         schema_file = schema_file)
-
-    skip_access_methods_test_cases = False
-    skip_message = ""
 
     if is_bundle:
 
@@ -229,7 +233,7 @@ def test_drs_object_info(
         test_object = drs_object_test,
         case_type = "has_access_info",
         case_description =f"Validate that each access_method in the access_methods field "
-                          f"of the {endpoint_name} response has atleast one of 'access_url'"
+                          f"of the {endpoint_name} response has at least one of 'access_url'"
                           f"or 'access_id' provided",
         endpoint_name = endpoint_name,
         response = response,
@@ -242,17 +246,20 @@ def test_drs_object_info(
 def test_drs_object_access(
         drs_access_phase,
         server_base_url,
-        auth_type,
-        auth_token,
-        drs_object_id,
-        drs_access_id,
-        schema_dir,
-        schema_file,
-        expected_status_code,
-        expected_content_type):
+		drs_object,
+		drs_access_id,
+        schema_dir):
 
+    expected_content_type = "application/json"
+    auth_type = drs_object["auth_type"]
+    drs_object_id = drs_object["drs_id"]
+    
+    if "test_name" in drs_object:
+    	test_name_prefix = drs_object["test_name"] + " "
+    else:
+    	test_name_prefix = ""
     drs_access_test = drs_access_phase.add_test()
-    drs_access_test.set_test_name(f"Run test cases on the drs access endpoint for drs id = {drs_object_id} "
+    drs_access_test.set_test_name(f"{test_name_prefix}Run test cases on the drs access endpoint for drs id = {drs_object_id} "
                                   f"and access id = {drs_access_id}; auth_type = {auth_type}")
     drs_access_test.set_test_description("validate drs access status code, content-type and response schemas")
 
@@ -260,11 +267,20 @@ def test_drs_object_access(
         server_base_url,
         DRS_OBJECT_INFO_URL + drs_object_id + DRS_ACCESS_URL + drs_access_id,
         auth_type,
-        auth_token)
+        drs_object["auth_token"])
+
+    if "invalid_token" in drs_object and drs_object["invalid_token"]:
+        expected_status_code = "403"
+        schema_file = ERROR_SCHEMA
+        endpoint_name = "DRS Access with invalid token"
+    else:
+        expected_status_code = "200"
+        endpoint_name = "DRS Access"
+        schema_file = DRS_ACCESS_SCHEMA
 
     add_common_test_cases(
         test_object = drs_access_test,
-        endpoint_name = "DRS Access",
+        endpoint_name = endpoint_name,
         response = response,
         expected_status_code = expected_status_code,
         expected_content_type = expected_content_type,
